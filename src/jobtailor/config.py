@@ -4,8 +4,6 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 
 @dataclass
 class Settings:
@@ -16,8 +14,6 @@ class Settings:
 
 
 def load_settings(project_root: Path) -> Settings:
-    load_dotenv(project_root / ".env")
-
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
     model = os.getenv("OPENAI_MODEL", "gpt-5").strip()
     base_url = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1").strip()
