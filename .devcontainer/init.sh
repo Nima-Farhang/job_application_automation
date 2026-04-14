@@ -5,7 +5,7 @@
 # and marks helper scripts as executable.
 set -euo pipefail
 
-echo "Running Kafka/Flink practice init script..."
+echo "Running job application automation init script..."
 
 BASHRC_FILE="${HOME}/.bashrc"
 
@@ -15,16 +15,15 @@ append_if_missing() {
   grep -Fqx "$line" "${BASHRC_FILE}" || echo "$line" >> "${BASHRC_FILE}"
 }
 
-# Ensure Python virtual environment binaries and Java are easy to access in new shells.
+# Ensure Python virtual environment binaries are easy to access in new shells.
 append_if_missing 'export PATH="/opt/venv/bin:$PATH"'
-append_if_missing 'export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"'
 
 # Create a small amount of local configuration/state storage for the project.
-mkdir -p "${HOME}/.config/kafka-flink-practice"
-mkdir -p "${HOME}/.local/state/kafka-flink-practice"
+mkdir -p "${HOME}/.config/job-application-automation"
+mkdir -p "${HOME}/.local/state/job-application-automation"
 
-# Create the project runtime directories used by Kafka and local output files.
-mkdir -p "${PWD}/kafka/data" "${PWD}/kafka/logs" "${PWD}/sample_output"
+# Create the project runtime directories used by local output files.
+mkdir -p "${PWD}/sample_output"
 
 # Make shell helpers runnable from the start.
 chmod +x scripts/*.sh 2>/dev/null || true
@@ -33,5 +32,3 @@ echo "Init complete."
 echo
 echo "Useful checks:"
 echo "  python --version"
-echo "  java -version"
-echo "  echo \$JAVA_HOME"

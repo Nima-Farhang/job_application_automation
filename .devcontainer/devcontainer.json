@@ -1,5 +1,5 @@
 {
-  "name": "kafka-flink-practice",
+  "name": "job-application-automation",
   "build": {
     "context": "..",
     "dockerfile": "Dockerfile"
