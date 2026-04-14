@@ -1,0 +1,21 @@
+About the job
+
+We are currently looking for a Staff Analytics Engineer in New Zealand.
+
+This is a high-impact individual contributor role designed for a seasoned analytics expert who thrives on building scalable, reliable data systems that empower entire organizations. You will play a critical role in establishing a unified data foundation, enabling teams across product, finance, marketing, and revenue to make faster, data-driven decisions with confidence.
+
+Accountabilities
+- Design and implement a scalable, reliable analytics architecture that serves as the single source of truth across all business functions
+- Own and evolve the data modeling layer
+- Lead the definition and standardization of canonical metrics
+- Audit and refactor existing data models
+- Enable self-service analytics
+- Mentor and influence data practices across the team
+
+Requirements
+- 7-10+ years of experience in analytics engineering, data engineering, or a related field
+- Advanced proficiency in SQL
+- Deep experience with data warehousing technologies
+- Strong expertise in dbt
+- Strong stakeholder management skills
+- High level of autonomy, ownership, and systems thinking

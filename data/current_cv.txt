@@ -1,0 +1,44 @@
+Nima Farhang
+Auckland, New Zealand
++64 21 122 9743 | nima@farhang.io
+
+PROFESSIONAL SUMMARY
+
+Principal-level Data and Analytics Engineer with 18+ years of experience designing and delivering enterprise data platforms across telecommunications, government, and cloud environments. Experienced in translating complex technical roadmaps into practical business outcomes while guiding stakeholders from strategy through to implementation.
+
+Currently responsible for a 70TB Snowflake + AWS data platform ingesting ~2.5TB of data daily from 25 production systems, and the operation of an enterprise automation platform executing ~240,000 jobs per day. My work focuses on architecting scalable data platforms, guiding engineering delivery, and enabling organisations to operationalise analytics and AI capabilities.
+
+CORE CAPABILITIES
+
+• Enterprise Data Platform Architecture
+• Cloud Data Platforms (AWS, Snowflake, Azure exposure)
+• Data Engineering & Pipeline Design (dbt, Spark, SQL, Python)
+• Modern Data Warehouse & Lakehouse Architecture
+• Data Modelling (Kimball / Data Vault)
+• Data Governance, RBAC & Secure Platform Operations
+• Data Strategy & Architecture Advisory
+• Stakeholder Engagement & Executive Communication
+• Engineering Standards, Mentoring & Delivery Leadership
+
+PROFESSIONAL EXPERIENCE
+
+One New Zealand — Principal Data & Automation Engineer | 2024 – Present
+Responsible for architecture oversight and operational ownership of enterprise data and automation platforms supporting telecommunications analytics and operational systems.
+
+One New Zealand — Senior Data Engineer (Technical Lead) | 2022 – 2024
+Technical lead for development and operation of the WNI enterprise data platform supporting telecommunications network analytics.
+
+One New Zealand — Capacity Management Engineer | 2019 – 2022
+
+UtilEz — Founder & Technical Lead | 2022 – 2024
+
+Ministry of Business, Innovation & Employment — Technical Advisor | 2015 – 2019
+
+Mycom International — Team Leader, Network Optimisation | 2012 – 2014
+
+Nokia Siemens Networks — Telecommunications Engineer | 2007 – 2012
+
+EDUCATION
+
+Master of Electrical Engineering — University of Auckland
+Bachelor of Engineering (Telecommunications)
