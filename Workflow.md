@@ -1,30 +1,6 @@
-
 # Job Application Automation Workflow
 
 This workflow automates the multi-stage CV and cover letter generation process using your existing tools (ChatGPT/OpenAI and Gemini). It reduces manual copying and pasting while keeping stages visible and editable.
-
-## Prerequisites and Setup
-
-1. Create a virtual environment:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On macOS/Linux; use .venv\Scripts\activate on Windows
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-   Edit `.env` and set your OpenAI API key:
-   ```env
-   OPENAI_API_KEY=your_key_here
-   OPENAI_MODEL=gpt-4  # or gpt-3.5-turbo if preferred
-   ```
 
 ## Base Data Preparation
 
@@ -39,9 +15,11 @@ Maintain the following files in the `data/` directory:
 1. Place the job advertisement into `jobs/<file>.txt` (e.g., `jobs/sample_staff_analytics_engineer.txt`).
 
 2. Run the initial stages (Stage -1, Stage 0, Stage 1):
+
    ```bash
-   python run.py start --job jobs/sample_staff_analytics_engineer.txt --current-cv data/current_cv.txt
+   python run.py start --job jobs/Senior_Data_Engineer.txt --current-cv data/current_cv.txt
    ```
+
    This generates:
    - `outputs/<job_slug>/stage_minus1_analysis.md`
    - `outputs/<job_slug>/stage0_acknowledgment.md`

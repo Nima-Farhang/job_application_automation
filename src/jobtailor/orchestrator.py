@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from jobtailor.docx_writer import export_final_docs
-from jobtailor.files import read_text, read_yaml_as_pretty_text, slugify_filename
-from jobtailor.models import JobContext
-from jobtailor.prompt_builder import load_and_render
-from jobtailor.providers.base import BaseProvider
+from src.jobtailor.docx_writer import export_final_docs
+from src.jobtailor.files import read_text, read_yaml_as_pretty_text, slugify_filename
+from src.jobtailor.models import JobContext
+from src.jobtailor.prompt_builder import load_and_render
+from src.jobtailor.providers.base import BaseProvider
 
 
 class JobApplicationOrchestrator:

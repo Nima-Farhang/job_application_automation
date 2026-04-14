@@ -1,0 +1,51 @@
+About the job
+Serko is a cutting-edge tech platform in global business travel & expense technology. When you join Serko, you become part of a team of passionate travellers and technologists bringing people together, using the world's leading business travel marketplace. We are proud to be an equal-opportunity employer, we embrace the richness of diversity, showing up authentically to create a positive impact. 
+
+
+Requirements
+
+Make an impact
+
+We are looking for a Senior Data Engineer with a strong background in data engineering to help shape and scale our modern data platform.
+
+This is a high-impact role where you'll work across ingestion, transformation, orchestration, and data quality to ensure reliable, secure and high-performing data solutions that support teams across the business.
+
+What you'll get to do
+
+Collaborate with Architects and Principal Engineers to design scalable and resilient data solutions as part of a team of five
+Build, maintain, and optimise data pipelines across batch and streaming workloads
+Coordinate with Platform, Architecture, and Security teams to ensure data platform solutions are designed for performance, security, durability and scalability
+Develop robust data models using dbt and orchestrate workflows via both Azure and Google Clouds
+Manage and enhance our cloud data warehouses on Snowflake and BigQuery
+Ensure best practice in data governance, cataloguing, observability and security
+Write clean and efficient code in dbt, SQL, Python, and PowerShell
+Improve existing complex SQL, PowerShell, and Python used in both SQL-based and non-SQL-based OLTP and OLAP systems
+Work closely with cross-functional teams to deliver impactful data products
+Participate in a light rotating on-call schedule (approximately one week per month)
+What you'll bring 
+
+Deep understanding of data warehouse, data lake, and modern data engineering and the ability to communicate such
+Practice experience working in an agile development environment and familiarity with DevOps culture
+Hands-on expertise with Snowflake (or equivalent modern cloud DWH)
+Advanced skills in SQL and experience using dbt
+Familiarity with data governance and metadata management
+Experience with Data Vault 2.0 or NoSQL technologies (e.g., MongoDB, Cosmos DB) is a plus
+Comfortable working across teams and translating business needs into scalable data solutions
+Passion for clean, scalable, secure and performant data solutions
+Strong communication and collaboration skills, solution-focused mindset
+A growth mindset and openness to feedback
+
+Benefits
+
+At Serko we aim to create a place where people can come and do their best work.  This means you'll be operating in an environment with great tools and support to enable you to perform at the highest level of your abilities, producing high-quality, and delivering innovative and efficient results. Our people are fully engaged, continuously improving, and encouraged to make an impact.
+
+Some of the benefits of working at Serko are:
+
+ 
+A competitive base salary
+ 
+KiwiSaver covered with employee contributions match up to 3% of salary, and life insurance.
+ 
+Health & Wellbeing: Discounted Southern Cross Health Insurance, access to confidential support, guidance and counselling service, wellbeing and voluntary leave, and free flu shots.
+ 
+Focus on development: Access to a learning & development platform, committed budget and opportunity for you to own your career pathways.

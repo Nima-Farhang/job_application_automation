@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from openai import OpenAI
 
-from jobtailor.providers.base import BaseProvider
+from src.jobtailor.providers.base import BaseProvider
 
 
 class OpenAIProvider(BaseProvider):

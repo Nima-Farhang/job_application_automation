@@ -3,13 +3,13 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from jobtailor.config import load_settings
-from jobtailor.orchestrator import JobApplicationOrchestrator
-from jobtailor.providers.openai_provider import OpenAIProvider
+from src.jobtailor.config import load_settings
+from src.jobtailor.orchestrator import JobApplicationOrchestrator
+from src.jobtailor.providers.openai_provider import OpenAIProvider
 
 
 def _resolve_project_root() -> Path:
-    return Path(__file__).resolve().parents[3]
+    return Path(__file__).resolve().parents[2]
 
 
 def build_parser() -> argparse.ArgumentParser:
