@@ -17,7 +17,7 @@ Maintain the following files in the `data/` directory:
 2. Run the initial stages (Stage -1, Stage 0, Stage 1):
 
    ```bash
-   python run.py start --job jobs/Senior_Data_Engineer.txt --current-cv data/current_cv.txt
+   python run.py start --job jobs/job.txt --current-cv data/current_cv.txt
    ```
 
    This generates:

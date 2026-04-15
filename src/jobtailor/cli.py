@@ -31,9 +31,15 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
+    print(f"[jobtailor] Starting command: {args.command}")
 
     project_root = _resolve_project_root()
+    print(f"[jobtailor] Project root: {project_root}")
     settings = load_settings(project_root)
+    print(
+        "[jobtailor] Loaded settings: "
+        f"model={settings.openai_model}, base_url={settings.openai_base_url}"
+    )
     provider = OpenAIProvider(
         api_key=settings.openai_api_key,
         model=settings.openai_model,
@@ -41,15 +47,22 @@ def main() -> None:
     )
     orchestrator = JobApplicationOrchestrator(project_root=project_root, provider=provider)
 
+    print(f"[jobtailor] Job file: {Path(args.job).resolve()}")
+    print(f"[jobtailor] Current CV file: {Path(args.current_cv).resolve()}")
     context = orchestrator.build_context(
         job_path=Path(args.job).resolve(),
         current_cv_path=Path(args.current_cv).resolve(),
     )
+    print(f"[jobtailor] Output directory: {context.output_dir}")
 
     if args.command == "start":
+        print("[jobtailor] Running start workflow: Stage -1, Stage 0, Stage 1, Stage 2 input")
         outputs = orchestrator.run_start(context)
     elif args.command == "finalize":
-        outputs = orchestrator.run_finalize(context, Path(args.reviewer_output).resolve())
+        reviewer_output_path = Path(args.reviewer_output).resolve()
+        print(f"[jobtailor] Reviewer output file: {reviewer_output_path}")
+        print("[jobtailor] Running finalize workflow: Stage 3 and DOCX export")
+        outputs = orchestrator.run_finalize(context, reviewer_output_path)
     else:
         raise ValueError(f"Unsupported command: {args.command}")
 

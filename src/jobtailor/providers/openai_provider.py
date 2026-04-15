@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from openai import OpenAI
+from openai import AuthenticationError, OpenAI
 
 from src.jobtailor.providers.base import BaseProvider
 
@@ -11,10 +11,19 @@ class OpenAIProvider(BaseProvider):
         self.client = OpenAI(api_key=api_key, base_url=base_url)
 
     def generate(self, prompt: str) -> str:
-        response = self.client.responses.create(
-            model=self.model,
-            input=prompt,
+        print(
+            "[openai] Sending request: "
+            f"model={self.model}, prompt_chars={len(prompt)}"
         )
+        try:
+            response = self.client.responses.create(
+                model=self.model,
+                input=prompt,
+            )
+        except AuthenticationError as exc:
+            raise ValueError(
+                "OpenAI authentication failed. Check that OPENAI_API_KEY is current and that the active shell or .env file is using the right key."
+            ) from exc
 
         text_parts: list[str] = []
 
@@ -28,4 +37,6 @@ class OpenAIProvider(BaseProvider):
         if not text_parts:
             raise ValueError("The model response did not contain any text output.")
 
-        return "\n".join(text_parts).strip()
+        output = "\n".join(text_parts).strip()
+        print(f"[openai] Received response: output_chars={len(output)}")
+        return output
