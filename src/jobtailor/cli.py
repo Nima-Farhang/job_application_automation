@@ -1,3 +1,5 @@
+"""Purpose: Define the command-line interface for starting and finalizing jobs."""
+
 from __future__ import annotations
 
 import argparse
@@ -9,10 +11,14 @@ from src.jobtailor.providers.openai_provider import OpenAIProvider
 
 
 def _resolve_project_root() -> Path:
+    # cli.py lives in src/jobtailor/, so parents[2] points back to the repo root.
     return Path(__file__).resolve().parents[2]
 
 
 def build_parser() -> argparse.ArgumentParser:
+    # The CLI has two workflows:
+    # - start: generate analysis, draft, and reviewer input
+    # - finalize: consume reviewer output and produce final documents
     parser = argparse.ArgumentParser(description="Automate a staged CV and cover letter workflow.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -29,10 +35,12 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
+    # Parse the user's command before constructing the rest of the application.
     parser = build_parser()
     args = parser.parse_args()
     print(f"[jobtailor] Starting command: {args.command}")
 
+    # Load configuration and create the provider client used for model calls.
     project_root = _resolve_project_root()
     print(f"[jobtailor] Project root: {project_root}")
     settings = load_settings(project_root)
@@ -47,6 +55,7 @@ def main() -> None:
     )
     orchestrator = JobApplicationOrchestrator(project_root=project_root, provider=provider)
 
+    # Build a shared context object with job text, CV text, profile data, and output paths.
     print(f"[jobtailor] Job file: {Path(args.job).resolve()}")
     print(f"[jobtailor] Current CV file: {Path(args.current_cv).resolve()}")
     context = orchestrator.build_context(
@@ -55,6 +64,7 @@ def main() -> None:
     )
     print(f"[jobtailor] Output directory: {context.output_dir}")
 
+    # Dispatch to the selected workflow and collect the generated file paths.
     if args.command == "start":
         print("[jobtailor] Running start workflow: Stage -1, Stage 0, Stage 1, Stage 2 input")
         outputs = orchestrator.run_start(context)
@@ -66,6 +76,7 @@ def main() -> None:
     else:
         raise ValueError(f"Unsupported command: {args.command}")
 
+    # Print a compact summary so the user knows exactly which files changed.
     print("\nGenerated files:")
     for name, path in outputs.items():
         print(f"- {name}: {path}")

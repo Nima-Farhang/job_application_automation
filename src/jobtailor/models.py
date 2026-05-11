@@ -1,3 +1,5 @@
+"""Purpose: Define shared data structures used across the workflow."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -6,6 +8,7 @@ from pathlib import Path
 
 @dataclass
 class JobContext:
+    # Holds all loaded inputs and derived paths for one job run.
     job_path: Path
     current_cv_path: Path
     job_description: str

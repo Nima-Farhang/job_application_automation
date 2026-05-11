@@ -1,3 +1,5 @@
+"""Purpose: Convert the final Stage 3 markdown-style output into DOCX files."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -6,10 +8,12 @@ from docx import Document
 
 
 def _clean_lines(text: str) -> list[str]:
+    # Preserve line order while removing trailing whitespace that would pollute DOCX output.
     return [line.rstrip() for line in text.splitlines()]
 
 
 def _extract_section(text: str, header: str, next_headers: list[str]) -> str:
+    # Find the body under a known section header until the next known header appears.
     lines = _clean_lines(text)
     start_index = None
     for i, line in enumerate(lines):
@@ -28,6 +32,7 @@ def _extract_section(text: str, header: str, next_headers: list[str]) -> str:
 
 
 def save_simple_docx(text: str, output_path: Path) -> None:
+    # Write a plain DOCX: blank lines stay blank, bullet lines become Word bullets.
     print(f"[docx] Writing DOCX: {output_path}")
     document = Document()
     for line in _clean_lines(text):
@@ -44,6 +49,7 @@ def save_simple_docx(text: str, output_path: Path) -> None:
 
 
 def export_final_docs(stage3_text: str, output_dir: Path) -> tuple[Path, Path]:
+    # Stage 3 is expected to contain separate sections for the final CV and cover letter.
     print(f"[docx] Exporting final documents into: {output_dir}")
     cv_text = _extract_section(
         stage3_text,
@@ -63,6 +69,7 @@ def export_final_docs(stage3_text: str, output_dir: Path) -> tuple[Path, Path]:
         print("[docx] Final cover letter section not isolated; using fallback text")
         cover_letter_text = "Cover letter could not be isolated from the Stage 3 output."
 
+    # The two DOCX files are always written into the job's output directory.
     cv_path = output_dir / "cv_final.docx"
     cover_path = output_dir / "cover_letter_final.docx"
 

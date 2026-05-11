@@ -1,3 +1,5 @@
+"""Purpose: Coordinate the staged job-application generation workflow."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -10,17 +12,20 @@ from src.jobtailor.providers.base import BaseProvider
 
 
 class JobApplicationOrchestrator:
+    # The orchestrator keeps workflow logic separate from the CLI and provider.
     def __init__(self, project_root: Path, provider: BaseProvider) -> None:
         self.project_root = project_root
         self.provider = provider
 
     def build_context(self, job_path: Path, current_cv_path: Path) -> JobContext:
+        # Each job gets a stable output folder based on the job file name.
         slug = slugify_filename(job_path)
         output_dir = self.project_root / "outputs" / slug
         output_dir.mkdir(parents=True, exist_ok=True)
         print(f"[orchestrator] Building context for job slug: {slug}")
         print(f"[orchestrator] Ensured output directory exists: {output_dir}")
 
+        # Load all source material once so every stage uses the same inputs.
         context = JobContext(
             job_path=job_path,
             current_cv_path=current_cv_path,
@@ -41,9 +46,11 @@ class JobApplicationOrchestrator:
         return context
 
     def run_start(self, context: JobContext) -> dict[str, Path]:
+        # The start workflow creates everything needed before the external review step.
         prompts_dir = self.project_root / "prompts"
         print(f"[orchestrator] Starting run_start for slug '{context.slug}'")
 
+        # Stage -1 asks the model to analyze the job description before drafting.
         print("[orchestrator] Rendering Stage -1 prompt")
         stage_minus1_prompt = load_and_render(
             prompts_dir / "stage_minus1.md",
@@ -61,6 +68,7 @@ class JobApplicationOrchestrator:
             f"{stage_minus1_path} ({len(stage_minus1_output)} chars)"
         )
 
+        # Stage 0 loads the CV formatting rules so the model can acknowledge the required format.
         print("[orchestrator] Rendering Stage 0 prompt")
         stage0_prompt = load_and_render(
             prompts_dir / "stage0.md",
@@ -78,6 +86,7 @@ class JobApplicationOrchestrator:
             f"{stage0_path} ({len(stage0_output)} chars)"
         )
 
+        # Stage 1 combines the current CV, profile facts, job description, and drafting prompt.
         print("[orchestrator] Preparing Stage 1 prompt")
         stage1_prompt_text = read_text(prompts_dir / "stage1.md")
         stage1_prompt = (
@@ -98,6 +107,7 @@ class JobApplicationOrchestrator:
             f"{stage1_path} ({len(stage1_output)} chars)"
         )
 
+        # Stage 2 is not sent to a provider here; it is saved for the manual Gemini review.
         print("[orchestrator] Rendering Stage 2 reviewer input")
         stage2_input = load_and_render(
             prompts_dir / "stage2_reviewer.md",
@@ -122,6 +132,7 @@ class JobApplicationOrchestrator:
         }
 
     def run_finalize(self, context: JobContext, reviewer_output_path: Path) -> dict[str, Path]:
+        # The finalize workflow resumes after the user saves the external review output.
         print(f"[orchestrator] Starting run_finalize for slug '{context.slug}'")
         print(f"[orchestrator] Loading reviewer output from: {reviewer_output_path}")
         reviewer_output = read_text(reviewer_output_path)
@@ -131,6 +142,7 @@ class JobApplicationOrchestrator:
         stage1_output = read_text(stage1_path)
         print(f"[orchestrator] Stage 1 draft length: {len(stage1_output)} chars")
 
+        # Stage 3 asks the model to revise the draft using the reviewer feedback.
         print("[orchestrator] Rendering Stage 3 prompt")
         stage3_prompt = load_and_render(
             self.project_root / "prompts" / "stage3_refine.md",
@@ -150,6 +162,7 @@ class JobApplicationOrchestrator:
             f"{stage3_path} ({len(stage3_output)} chars)"
         )
 
+        # The final markdown is split into separate CV and cover letter DOCX files.
         print("[orchestrator] Exporting final DOCX files")
         cv_path, cover_path = export_final_docs(stage3_output, context.output_dir)
         print(f"[orchestrator] Final CV DOCX: {cv_path}")
