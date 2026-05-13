@@ -2,466 +2,462 @@
 
 ## 1. Purpose Of The System
 
-The TypeScript project should reproduce the behaviour of the existing Python repository in a cleaner, incremental way.
+The TypeScript project reproduces the behaviour of the existing Python repository in a cleaner, staged, and more maintainable way.
 
-The system is a local command-line workflow for creating tailored CVs and cover letters. It takes a job advert, a current CV, a factual base profile, formatting rules, and prompt templates. It then generates staged outputs using an LLM provider and saves all results into a job-specific output folder.
+The system is a local command-line workflow for creating tailored CVs and cover letters. It takes:
 
-The system is not a full recruitment platform. It is not an application tracker. It is not a web application. The first version should remain a focused local automation tool.
+- a job advert
+- a current CV
+- a factual base profile
+- formatting rules
+- prompt templates
 
-## 2. What The Current Repository Does
+It then generates staged outputs using an LLM provider and saves all intermediate and final results into job-specific output folders.
 
-The current Python repository performs the following activity:
+The system is intentionally designed as:
 
-1. Accepts a job advert file and current CV file from the command line.
-2. Reads fixed supporting data from the `data/` folder:
-   - factual base profile
-   - CV formatting rules
-   - detailed Stage 1 drafting prompt
-3. Reads prompt templates from the `prompts/` folder.
-4. Creates an output folder based on the job filename.
-5. Runs Stage -1 role analysis through OpenAI.
-6. Runs Stage 0 formatting acknowledgement through OpenAI.
-7. Runs Stage 1 CV and cover-letter drafting through OpenAI.
-8. Creates Stage 2 reviewer input for manual Gemini review.
-9. Waits for the user to save reviewer feedback.
-10. Runs Stage 3 final refinement through OpenAI.
-11. Splits the final output into CV and cover-letter sections.
-12. Exports final `.docx` files.
+- a local developer workflow
+- a deterministic staged pipeline
+- a manually reviewable process
+- a prompt-driven automation tool
 
-The important design idea is the staged pipeline. Each stage has a clear input, prompt, output file, and purpose.
+The system is NOT:
 
-## 3. Proposed TypeScript Architecture
+- a recruitment platform
+- an ATS
+- a job board scraper
+- a web application
+- a multi-user SaaS platform
 
-The TypeScript rewrite should use a layered command-line architecture.
+The first version should remain focused and operationally simple.
+
+---
+
+# 2. What The Current Repository Does
+
+The current Python repository performs the following workflow:
+
+| Stage | Purpose | Automated? |
+|---|---|---|
+| Stage -1 | Analyse the job advert and identify the real hiring signal | Yes |
+| Stage 0 | Load and acknowledge CV formatting rules | Yes |
+| Stage 1 | Generate first-pass tailored CV and cover letter | Yes |
+| Stage 2 | Create a reviewer prompt bundle for Gemini | Yes |
+| Stage 3 | Get reviewer feedback from Gemini | Yes |
+| Stage 4 | Refine the draft using reviewer feedback | Yes |
+| Export | Create final CV and cover letter documents | Yes |
+
+The workflow writes all intermediate and final outputs into structured folders.
+
+Example:
 
 ```text
-CLI
- |
- v
-Configuration Loader
- |
- v
-Orchestrator
- |
- +--> File Reader / Writer
- |
- +--> Prompt Renderer
- |
- +--> Text Generation Provider
- |
- +--> Document Exporter
- |
- v
 outputs/<job_slug>/
+outputs/<CV_cover_letter>/
 ```
 
-## 4. Main Components
-
-### 4.1 CLI Layer
-
-Proposed file:
+Typical generated files:
 
 ```text
-src/cli/main.ts
+outputs/<job_slug>/stage_minus1_analysis.md
+outputs/<job_slug>/stage0_acknowledgement.md
+outputs/<job_slug>/stage1_draft.md
+outputs/<job_slug>/stage2_reviewer_input.md
+outputs/<job_slug>/stage3_reviewer_output.md
+outputs/<job_slug>/stage4_final.md
+
+outputs/<CV_cover_letter>/cv_final_job_slug.docx
+outputs/<CV_cover_letter>/cover_letter_job_slug.docx
 ```
 
-Responsibilities:
+---
 
-- Parse command-line arguments.
-- Support `start` and `finalize` commands.
-- Load settings.
-- Create provider instance.
-- Create orchestrator instance.
-- Print generated output paths.
+# 3. TypeScript Rewrite Goals
 
-The CLI should not contain workflow logic.
+Primary goals:
 
-### 4.2 Configuration Layer
+1. Rebuild the workflow incrementally.
+2. Keep prompt stages isolated and testable.
+3. Separate orchestration from providers.
+4. Preserve manual review boundaries.
+5. Keep outputs deterministic and reproducible.
+6. Avoid large monolithic implementations.
+7. Support multiple LLM providers later.
+8. Make prompt engineering explicit and maintainable.
 
-Proposed file:
+---
+
+# 4. High-Level Architecture
 
 ```text
-src/config/settings.ts
+┌─────────────────────┐
+│ CLI Entry Point     │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Workflow Controller │
+└──────────┬──────────┘
+           │
+           ├──────────────┐
+           │              │
+           ▼              ▼
+┌────────────────┐  ┌────────────────┐
+│ Prompt Loader  │  │ File Loader    │
+└────────────────┘  └────────────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Prompt Renderer     │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ LLM Provider Layer  │
+│ OpenAI / Gemini     │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Output Writer       │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ DOCX Export Layer   │
+└─────────────────────┘
 ```
 
-Responsibilities:
+---
 
-- Load `.env`.
-- Read required environment variables.
-- Validate required settings.
-- Return a typed settings object.
-
-Recommended settings:
+# 5. Repository Structure
 
 ```text
-OPENAI_API_KEY
-OPENAI_MODEL
-OPENAI_BASE_URL
+job-application-automation-ts/
+├── src/
+│   ├── cli/
+│   ├── workflows/
+│   ├── prompts/
+│   ├── providers/
+│   ├── exporters/
+│   ├── templates/
+│   ├── utils/
+│   └── types/
+├── prompt_templates/
+│   ├── stage-minus-1.md
+│   ├── stage-0.md
+│   ├── stage-1.md
+│   ├── stage-2-reviewer.md
+│   ├── stage-3-refine.md
+│   └── cv-format-rules.md
+├── data/
+│   ├── base-profile.yaml
+│   └── current-cv.txt
+├── jobs/
+│   └── sample-job.txt
+├── outputs/
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-Use validation so missing configuration fails early with a clear message.
+---
 
-### 4.3 Core Workflow Layer
+# 6. Workflow Design
 
-Proposed files:
+## 6.1 Start Workflow
+
+The `start` workflow generates:
+
+- Stage -1 analysis
+- Stage 0 acknowledgement
+- Stage 1 tailored draft
+- Stage 2 reviewer input bundle
+
+### Command
+
+```bash
+npm run start -- start \
+  --job jobs/<job_slug>.txt \
+  --current-cv data/current-cv.txt
+```
+
+### Output
 
 ```text
-src/core/orchestrator.ts
-src/core/job-context.ts
-src/core/workflow-stage.ts
+outputs/<job_slug>/stage_minus1_analysis.md
+outputs/<job_slug>/stage0_acknowledgement.md
+outputs/<job_slug>/stage1_draft.md
+outputs/<job_slug>/stage2_reviewer_input.md
 ```
 
-Responsibilities:
+### Internal Steps
 
-- Build the job context.
-- Coordinate the staged workflow.
-- Keep workflow ordering in one place.
-- Save intermediate outputs.
-- Return generated file paths to the CLI.
+1. Load job description.
+2. Load current CV.
+3. Load base profile.
+4. Render Stage -1 prompt.
+5. Call provider.
+6. Save Stage -1 output.
+7. Render Stage 0 prompt.
+8. Call provider.
+9. Save Stage 0 output.
+10. Render Stage 1 prompt.
+11. Call provider.
+12. Save Stage 1 draft.
+13. Render Stage 2 reviewer input.
+14. Save Stage 2 reviewer input.
 
-The orchestrator is the most important module, but it should remain readable and procedural in version 1.
+---
 
-### 4.4 File Layer
+## 6.2 Review Workflow
 
-Proposed files:
+The `review` workflow submits the reviewer bundle to Gemini and captures structured feedback.
+
+### Command
+
+```bash
+npm run start -- review \
+  --job jobs/<job_slug>.txt \
+  --reviewer_input outputs/<job_slug>/stage2_reviewer_input.md
+```
+
+### Output
 
 ```text
-src/files/file-reader.ts
-src/files/output-writer.ts
-src/files/slugify.ts
+outputs/<job_slug>/stage3_reviewer_output.md
 ```
 
-Responsibilities:
+### Internal Steps
 
-- Read UTF-8 text files.
-- Read YAML profile data and convert it into stable prompt text.
-- Create safe output folder names from job filenames.
-- Write markdown output files.
-- Ensure output directories exist.
+1. Load job description.
+2. Load reviewer input.
+3. Call Gemini provider.
+4. Receive reviewer feedback.
+5. Save Stage 3 reviewer output.
 
-This layer should be easy to unit test.
+---
 
-### 4.5 Prompt Layer
+## 6.3 Finalize Workflow
 
-Proposed file:
+The `finalize` workflow generates the final CV and cover letter using reviewer feedback.
+
+### Command
+
+```bash
+npm run start -- finalize \
+  --job jobs/<job_slug>.txt \
+  --current-cv data/current-cv.txt \
+  --reviewer-output outputs/<job_slug>/stage3_reviewer_output.md
+```
+
+### Output
 
 ```text
-src/prompts/prompt-renderer.ts
+outputs/<job_slug>/stage4_final.md
+
+outputs/<CV_cover_letter>/cv_final_job_slug.docx
+outputs/<CV_cover_letter>/cover_letter_job_slug.docx
 ```
 
-Responsibilities:
+### Internal Steps
 
-- Load prompt templates.
-- Replace placeholders with runtime values.
-- Keep prompt rendering independent from the LLM provider.
+1. Load job description.
+2. Load current CV.
+3. Load Stage 1 draft.
+4. Load reviewer output.
+5. Render Stage 4 prompt.
+6. Call provider.
+7. Save Stage 4 final markdown.
+8. Export DOCX files.
 
-Initial placeholder style:
+---
 
-```text
-{{ job_description }}
-{{ current_cv }}
-{{ base_profile }}
-{{ cv_format_rules }}
-{{ stage_minus1_output }}
-{{ stage1_output }}
-{{ reviewer_output }}
-```
+# 7. Provider Abstraction Layer
 
-Use simple replacement first. Add strict validation later.
+The provider layer isolates model-specific logic.
 
-### 4.6 Provider Layer
+Example interface:
 
-Proposed files:
-
-```text
-src/providers/text-generation-provider.ts
-src/providers/openai-provider.ts
-```
-
-Responsibilities:
-
-- Hide model-provider details from the workflow.
-- Provide one common method for text generation.
-
-Interface:
-
-```ts
-export interface TextGenerationProvider {
+```typescript
+export interface LLMProvider {
   generate(prompt: string): Promise<string>;
 }
 ```
 
-The orchestrator should only depend on this interface.
-
-This allows later support for:
+Providers may include:
 
 - OpenAI
 - Gemini
-- Anthropic
-- fake provider for tests
-- local model provider
+- Mock provider for testing
 
-### 4.7 Export Layer
+The system should allow providers to be swapped without changing workflow logic.
 
-Proposed file:
+---
 
-```text
-src/export/document-exporter.ts
-```
+# 8. Prompt System
+
+Prompt templates are external markdown files.
+
+Benefits:
+
+- easier iteration
+- cleaner testing
+- no embedded prompts in business logic
+- simpler prompt versioning
+
+Prompt rendering should support:
+
+- variable injection
+- stage-specific context
+- reusable placeholders
+
+---
+
+# 9. Output Strategy
+
+Every workflow stage writes artifacts to disk.
+
+Benefits:
+
+- debugging visibility
+- reproducibility
+- manual inspection
+- auditability
+- prompt iteration support
+
+No stage should rely purely on in-memory state.
+
+---
+
+# 10. DOCX Export
+
+DOCX export occurs after markdown generation is stable.
 
 Responsibilities:
 
-- Read Stage 3 final markdown text.
-- Extract the Final CV section.
-- Extract the Final Cover Letter section.
-- Write final `.docx` files.
+- convert final markdown into formatted DOCX
+- generate separate CV and cover letter files
+- preserve clean ATS-compatible formatting
 
-This should be added after the markdown pipeline works.
+Export should remain isolated from prompt orchestration.
 
-## 5. Runtime Flow
+---
 
-### 5.1 Start Command
+# 11. Environment Variables
 
-Command:
+Secrets are expected to be provided through GitHub Codespaces secrets or local environment injection.
 
-```bash
-npm run start -- start --job jobs/job.txt --current-cv data/current-cv.txt
+Example:
+
+```env
+OPENAI_API_KEY=your_api_key_here
+OPENAI_MODEL=gpt-5
+OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
-Flow:
+Rules:
 
-```text
-CLI
- -> load settings
- -> create provider
- -> build job context
- -> create outputs/<job_slug>/
- -> render Stage -1 prompt
- -> call provider
- -> save stage_minus1_analysis.md
- -> render Stage 0 prompt
- -> call provider
- -> save stage0_acknowledgement.md
- -> render Stage 1 prompt
- -> call provider
- -> save stage1_draft.md
- -> render Stage 2 reviewer input
- -> save stage2_reviewer_input.md
-```
+- do not create `.env`
+- do not commit secrets
+- keep provider credentials external
 
-Stage 2 should not call Gemini automatically in version 1. The manual review point should remain explicit.
+---
 
-### 5.2 Manual Reviewer Handoff
+# 12. Development Phases
 
-The user manually copies:
+## Phase 1 — Project Skeleton
 
-```text
-outputs/<job_slug>/stage2_reviewer_input.md
-```
+Create:
 
-into Gemini or another reviewer.
+- TypeScript project
+- folder structure
+- `package.json`
+- `tsconfig.json`
 
-The reviewer response is saved as:
+Do not integrate providers yet.
 
-```text
-outputs/<job_slug>/stage2_reviewer_output.md
-```
+---
 
-### 5.3 Finalize Command
-
-Command:
-
-```bash
-npm run start -- finalize \
-  --job jobs/job.txt \
-  --current-cv data/current-cv.txt \
-  --reviewer-output outputs/<job_slug>/stage2_reviewer_output.md
-```
-
-Flow:
-
-```text
-CLI
- -> load settings
- -> create provider
- -> build job context
- -> load stage1_draft.md
- -> load stage2_reviewer_output.md
- -> render Stage 3 prompt
- -> call provider
- -> save stage3_final.md
- -> export cv_final.docx
- -> export cover_letter_final.docx
-```
-
-## 6. Data Flow
-
-```text
-Job advert
-Current CV
-Base profile
-CV rules
-Step 1 prompt
-Prompt templates
-   |
-   v
-JobContext
-   |
-   v
-Rendered prompts
-   |
-   v
-Provider responses
-   |
-   v
-Intermediate markdown files
-   |
-   v
-Manual reviewer output
-   |
-   v
-Stage 3 final markdown
-   |
-   v
-Final DOCX files
-```
-
-## 7. Suggested Development Sequence
-
-The rewrite should be developed in small vertical slices.
-
-### Step 1 — Skeleton Only
-
-Create the folder structure, TypeScript config, package scripts, and empty modules.
-
-Outcome:
-
-- Project runs a placeholder CLI command.
-- No OpenAI integration.
-- No document export.
-
-### Step 2 — File Utilities
+## Phase 2 — File Loading And Slug Generation
 
 Implement:
 
-- `readTextFile`
-- `readYamlAsPromptText`
-- `slugifyJobFileName`
-- `ensureOutputDirectory`
-- `writeTextFile`
+- job loading
+- CV loading
+- output folder creation
+- slug generation
 
-Outcome:
+---
 
-- The project can load local files and create `outputs/<job_slug>/`.
-
-### Step 3 — Prompt Renderer
+## Phase 3 — Prompt Rendering
 
 Implement:
 
-- `renderTemplate(templateText, variables)`
-- `loadAndRenderPrompt(templatePath, variables)`
+- markdown template loading
+- variable replacement
+- prompt composition
 
-Outcome:
+---
 
-- Prompt templates can be rendered without calling an LLM.
+## Phase 4 — Provider Integration
 
-### Step 4 — Fake Provider
+Implement:
 
-Implement a fake provider that returns deterministic text.
+- provider abstraction
+- OpenAI provider
+- Gemini provider
+- mock provider for testing
 
-Outcome:
+---
 
-- The full workflow can be tested without API calls or cost.
+## Phase 5 — Start Workflow
 
-### Step 5 — Start Workflow
+Implement the complete `start` pipeline.
 
-Implement `start` using the fake provider first.
+---
 
-Outcome:
+## Phase 6 — Review Workflow
 
-- The expected Stage -1, Stage 0, Stage 1, and Stage 2 files are written.
+Implement the complete `review` pipeline.
 
-### Step 6 — OpenAI Provider
+---
 
-Add the real OpenAI provider behind the provider interface.
+## Phase 7 — Finalize Workflow
 
-Outcome:
+Implement the complete `finalize` pipeline.
 
-- The same workflow works with real model calls.
+---
 
-### Step 7 — Finalize Workflow
+## Phase 8 — DOCX Export
 
-Implement `finalize` using a saved reviewer output file.
+Implement markdown-to-DOCX export.
 
-Outcome:
+---
 
-- `stage3_final.md` is produced.
+# 13. Design Principles
 
-### Step 8 — DOCX Export
+The repository should prioritize:
 
-Add document export.
+- clarity over abstraction
+- staged workflows over hidden orchestration
+- explicit outputs over implicit state
+- maintainability over framework complexity
+- local reproducibility over cloud dependence
 
-Outcome:
+The project is intended as a professional engineering workflow rather than a rapid prototype.
 
-- `cv_final.docx` and `cover_letter_final.docx` are produced.
+---
 
-## 8. Key Design Decisions
+# 14. Future Enhancements
 
-### Keep The Manual Reviewer Boundary
+Possible future improvements:
 
-Do not automate Gemini in the first version. The manual review point is useful because it gives the user control before final generation.
-
-### Keep Generated Files Visible
-
-Every stage should write a file. This makes the workflow auditable and easier to debug.
-
-### Keep Facts Separate From Drafting
-
-`base-profile.yaml` should remain the factual source of truth. Generated CV text should not become the factual source.
-
-### Keep Provider Calls Swappable
-
-The workflow should not know whether the provider is OpenAI, Gemini, or a fake test provider.
-
-### Keep DOCX Export Late
-
-Do not start with DOCX export. First make the markdown workflow reliable.
-
-## 9. Initial Non-Goals
-
-The first TypeScript version should not include:
-
-- Web UI
-- database
-- job application CRM
-- automated job scraping
-- automated application submission
-- multi-user support
-- background scheduler
-- full ATS scoring engine
-- automatic Gemini integration
-
-These can be added later only after the core workflow is stable.
-
-## 10. Risks And Controls
-
-| Risk | Control |
-|---|---|
-| Building too much at once | Use the staged development sequence |
-| Prompt outputs changing format | Save intermediate files and keep section headers stable |
-| Model provider lock-in | Use a provider interface |
-| Generated content drifting from facts | Keep base profile as source of truth |
-| DOCX export becoming fragile | Add export only after Stage 3 output format is stable |
-| High API cost during development | Use a fake provider until orchestration is tested |
-
-## 11. Recommended First Version Boundary
-
-The first working TypeScript version should only prove this:
-
-```text
-Given a job advert, CV, base profile, and prompt templates,
-the CLI can generate staged markdown outputs into outputs/<job_slug>/
-using a fake provider or OpenAI provider.
-```
-
-Once that is stable, document export can be added.
+- ATS keyword scoring
+- PDF export
+- lightweight local UI
+- richer DOCX styling
+- prompt validation
+- run metadata tracking
+- prompt version history
+- configurable provider routing
