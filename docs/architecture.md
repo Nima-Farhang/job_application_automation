@@ -2,9 +2,7 @@
 
 ## 1. Purpose Of The System
 
-The TypeScript project reproduces the behaviour of the existing Python repository in a cleaner, staged, and more maintainable way.
-
-The system is a local command-line workflow for creating tailored CVs and cover letters. It takes:
+This TypeScript Project is a local command-line workflow for creating tailored CVs and cover letters. It takes:
 
 - a job advert
 - a current CV
@@ -37,15 +35,15 @@ The first version should remain focused and operationally simple.
 
 The current Python repository performs the following workflow:
 
-| Stage | Purpose | Automated? |
-|---|---|---|
-| Stage -1 | Analyse the job advert and identify the real hiring signal | Yes |
-| Stage 0 | Load and acknowledge CV formatting rules | Yes |
-| Stage 1 | Generate first-pass tailored CV and cover letter | Yes |
-| Stage 2 | Create a reviewer prompt bundle for Gemini | Yes |
-| Stage 3 | Get reviewer feedback from Gemini | Yes |
-| Stage 4 | Refine the draft using reviewer feedback | Yes |
-| Export | Create final CV and cover letter documents | Yes |
+| Stage    | Purpose                                                    | Automated? |
+| -------- | ---------------------------------------------------------- | ---------- |
+| Stage -1 | Analyse the job advert and identify the real hiring signal | Yes        |
+| Stage 0  | Load and acknowledge CV formatting rules                   | Yes        |
+| Stage 1  | Generate first-pass tailored CV and cover letter           | Yes        |
+| Stage 2  | Create a reviewer prompt bundle for Gemini                 | Yes        |
+| Stage 3  | Get reviewer feedback from Gemini                          | Yes        |
+| Stage 4  | Refine the draft using reviewer feedback                   | Yes        |
+| Export   | Create final CV and cover letter documents                 | Yes        |
 
 The workflow writes all intermediate and final outputs into structured folders.
 
@@ -72,11 +70,11 @@ outputs/<CV_cover_letter>/cover_letter_job_slug.docx
 
 ---
 
-# 3. TypeScript Rewrite Goals
+# 3. TypeScript Goals
 
 Primary goals:
 
-1. Rebuild the workflow incrementally.
+1. Build the workflow incrementally.
 2. Keep prompt stages isolated and testable.
 3. Separate orchestration from providers.
 4. Preserve manual review boundaries.
