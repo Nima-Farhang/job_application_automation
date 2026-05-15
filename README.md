@@ -77,11 +77,11 @@ job-application-automation-ts/
 │   ├── stage-0.md
 │   ├── stage-1.md
 │   ├── stage-2-reviewer.md
-│   ├── stage-3-refine.md
+│   ├── stage-4-finalize.md
 │   └── cv-format-rules.md
 ├── data/
-│   ├── base-profile.yaml
-│   └── current-cv.txt
+│   ├── base_profile.yaml
+│   └── current_cv.txt
 
 
 ├── jobs/
@@ -93,10 +93,11 @@ job-application-automation-ts/
 │   │   └── main.ts
 │   ├── config/
 │   │   └── settings.ts
-│   ├── core/
-│   │   ├── orchestrator.ts
+│   ├── workflows/
 │   │   ├── job-context.ts
-│   │   └── workflow-stage.ts
+│   │   ├── start-workflow.ts
+│   │   ├── review-workflow.ts
+│   │   └── finalize-workflow.ts
 │   ├── files/
 │   │   ├── file-reader.ts
 │   │   ├── output-writer.ts
@@ -127,7 +128,7 @@ Recommended first-version stack:
 - `commander` for CLI parsing
 - `dotenv` for environment loading
 - `zod` for configuration validation
-- `yaml` for reading `base-profile.yaml`
+- `yaml` for reading `base_profile.yaml`
 - OpenAI SDK for model calls
 - `docx` package for later DOCX export
 - `vitest` for tests
@@ -139,7 +140,7 @@ The first version should support the same two-command workflow as the Python pro
 ### Start Workflow
 
 ```bash
-npm run start -- start --job jobs/job_slug.txt --current-cv data/current-cv.txt
+npm run start -- start --job jobs/job_slug.txt --current-cv data/current_cv.txt
 ```
 
 Expected output:
@@ -156,7 +157,7 @@ outputs/<job_slug>/stage2_reviewer_input.md
 ```bash
 npm run start -- review \
     --job jobs/<job_slug>.txt \
-    --reviewer_input outputs/<job_slug>/stage2_reviewer_input.md
+    --reviewer-input outputs/<job_slug>/stage2_reviewer_input.md
 ```
 
 Expected output:
@@ -170,7 +171,7 @@ outputs/<job_slug>/stage3_reviewer_output.md
 ```bash
 npm run start -- finalize \
   --job jobs/<job_slug>.txt \
-  --current-cv data/current-cv.txt \
+  --current-cv data/current_cv.txt \
   --reviewer-output outputs/<job_slug>/stage3_reviewer_output.md
 ```
 
@@ -288,7 +289,7 @@ First export plain documents. Improve styling later.
 - Do not add a UI in version 1.
 - Do not hide intermediate files.
 - Do not allow generated content to become the source of truth.
-- Keep `base-profile.yaml` as the factual source.
+- Keep `base_profile.yaml` as the factual source.
 - Keep prompts editable as markdown.
 
 ## First Milestone Definition Of Done

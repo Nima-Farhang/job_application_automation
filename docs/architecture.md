@@ -138,19 +138,18 @@ job-application-automation-ts/
 │   ├── prompts/
 │   ├── providers/
 │   ├── exporters/
-│   ├── templates/
 │   ├── utils/
 │   └── types/
-├── prompt_templates/
+├── prompts/
 │   ├── stage-minus-1.md
 │   ├── stage-0.md
 │   ├── stage-1.md
 │   ├── stage-2-reviewer.md
-│   ├── stage-3-refine.md
+│   ├── stage-4-finalize.md
 │   └── cv-format-rules.md
 ├── data/
-│   ├── base-profile.yaml
-│   └── current-cv.txt
+│   ├── base_profile.yaml
+│   └── current_cv.txt
 ├── jobs/
 │   └── sample-job.txt
 ├── outputs/
@@ -177,7 +176,7 @@ The `start` workflow generates:
 ```bash
 npm run start -- start \
   --job jobs/<job_slug>.txt \
-  --current-cv data/current-cv.txt
+  --current-cv data/current_cv.txt
 ```
 
 ### Output
@@ -217,7 +216,7 @@ The `review` workflow submits the reviewer bundle to Gemini and captures structu
 ```bash
 npm run start -- review \
   --job jobs/<job_slug>.txt \
-  --reviewer_input outputs/<job_slug>/stage2_reviewer_input.md
+  --reviewer-input outputs/<job_slug>/stage2_reviewer_input.md
 ```
 
 ### Output
@@ -245,7 +244,7 @@ The `finalize` workflow generates the final CV and cover letter using reviewer f
 ```bash
 npm run start -- finalize \
   --job jobs/<job_slug>.txt \
-  --current-cv data/current-cv.txt \
+  --current-cv data/current_cv.txt \
   --reviewer-output outputs/<job_slug>/stage3_reviewer_output.md
 ```
 

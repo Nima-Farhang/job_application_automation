@@ -19,6 +19,25 @@ vitest
 - Avoid network calls in unit tests.
 - Avoid testing OpenAI or Gemini behavior in the first milestone.
 - Keep fixture files small and readable.
+- Follow `docs/fixture-strategy.md` for fixture locations, naming, size, and temporary output rules.
+
+## Fixture Strategy
+
+Store test fixtures under:
+
+```text
+tests/fixtures/
+```
+
+Workflow tests should use `jobs/sample-job.txt` as the default job fixture and expect the slug `sample-job`.
+
+Automated tests should write outputs to temporary directories using the same shape as production output paths:
+
+```text
+<temp_dir>/outputs/<job_slug>/
+```
+
+Tests should not require repository-level generated files under `outputs/`.
 
 ## Unit Tests
 
@@ -124,4 +143,3 @@ The generated files should be readable markdown and should preserve the stage se
 - DOCX visual regression tests
 - PDF export tests
 - ATS scoring tests
-

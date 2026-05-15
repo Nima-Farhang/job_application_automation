@@ -4,6 +4,10 @@
 
 This file defines step-by-step development prompts for building the TypeScript rewrite. Use one step at a time. Each prompt is intended to produce a small, reviewable change before moving to the next step.
 
+## Source Of Truth
+
+If project documents conflict, follow `docs/workflow-specification.md` for runtime behavior, CLI commands, stage order, and output filenames. Follow this file, `docs/project-workflow.md`, for implementation order and phase boundaries.
+
 ## How To Use This File
 
 For each step:
@@ -29,6 +33,19 @@ Do not skip ahead to provider integration or DOCX export before the markdown wor
 - Every TypeScript source file and executable script must start with a brief comment explaining the file's responsibility.
 - Add concise internal comments for non-obvious workflow, validation, provider, or file ownership logic.
 - Avoid comments that merely repeat obvious code.
+
+## Standard Definition Of Done
+
+Every development step must satisfy this standard definition of done in addition to the step-specific criteria:
+
+- `npm run typecheck` passes when `package.json` exists.
+- `npm test` passes when tests exist.
+- New code files have top-of-file responsibility comments.
+- Non-obvious logic has brief internal comments.
+- No live provider calls are added unless the current step explicitly requires them.
+- No secrets or local `.env` files are committed.
+- Expected outputs match `docs/workflow-specification.md`.
+- Naming conventions match the project contracts: `data/current_cv.txt`, `prompts/`, `src/workflows/`, and hyphenated CLI flags.
 
 ## Step 1 - Create The TypeScript Skeleton
 
@@ -87,7 +104,7 @@ Implement the first reusable file and naming utilities.
 ### Development Prompt
 
 ```text
-Read docs/data-and-output-contracts.md, docs/testing-strategy.md, and docs/workflow-specification.md.
+Read docs/data-and-output-contracts.md, docs/testing-strategy.md, docs/fixture-strategy.md, and docs/workflow-specification.md.
 
 Implement file loading and slug generation only.
 
@@ -268,7 +285,7 @@ Add tests using small fixture files.
 ### Expected Files
 
 ```text
-src/core/job-context.ts
+src/workflows/job-context.ts
 tests/job-context.test.ts
 ```
 
@@ -310,7 +327,6 @@ Do not implement review, finalize, OpenAI, Gemini, or DOCX export yet.
 ### Expected Files
 
 ```text
-src/core/orchestrator.ts
 src/workflows/start-workflow.ts
 tests/start-workflow.test.ts
 ```

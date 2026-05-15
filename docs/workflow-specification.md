@@ -4,6 +4,12 @@
 
 This document defines the expected behavior of each workflow command. It is the contract the implementation should follow.
 
+## Source Of Truth
+
+This file is the binding source of truth for runtime behavior, CLI commands, stage order, and output filenames.
+
+If project documents conflict, follow this file for behavior and `docs/project-workflow.md` for implementation order.
+
 ## Shared Concepts
 
 ### Job Slug
@@ -150,4 +156,3 @@ The CLI should fail early with a clear message when:
 - a required placeholder has no value
 - an output path cannot be created
 - provider configuration is invalid
-

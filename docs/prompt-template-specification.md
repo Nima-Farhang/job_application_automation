@@ -23,7 +23,7 @@ prompts/stage-4-finalize.md
 prompts/cv-format-rules.md
 ```
 
-The architecture document mentions `prompt_templates/` in one section. Before implementation, use `prompts/` consistently unless the repository is deliberately renamed.
+Use `prompts/` consistently throughout the project. Do not introduce a second prompt directory.
 
 ## Placeholder Format
 
@@ -118,4 +118,3 @@ Prompts should:
 - preserve the formatting intent from `cv-format-rules.md`
 - ask for concise, ATS-compatible output
 - keep CV and cover letter sections clearly separated in generated markdown
-
