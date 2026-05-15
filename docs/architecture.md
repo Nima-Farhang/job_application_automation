@@ -451,10 +451,10 @@ The project is intended as a professional engineering workflow rather than a rap
 
 Possible future improvements:
 
-- ATS keyword scoring
-- PDF export
 - lightweight local UI
 - richer DOCX styling
+- ATS keyword scoring
+- PDF export
 - prompt validation
 - run metadata tracking
 - prompt version history
