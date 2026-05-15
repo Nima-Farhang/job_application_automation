@@ -102,6 +102,31 @@ DOCX export is a later requirement after the markdown workflow is stable.
 - Do not hide intermediate files.
 - Prefer deterministic behavior when using the fake provider.
 
+## Code Documentation Requirements
+
+Every TypeScript source file and executable script created for this project must start with a brief top-of-file comment explaining what the file is responsible for.
+
+Example:
+
+```typescript
+// Loads text and YAML input files used to build job application prompts.
+```
+
+Implementation code should also include concise comments where they help explain non-obvious behavior, workflow boundaries, validation rules, or provider-specific decisions.
+
+Comments should:
+
+- explain why a piece of code exists when that is not obvious
+- clarify stage boundaries and file ownership rules
+- call out provider abstractions and places where network calls are intentionally avoided
+- stay brief and practical
+
+Comments should not:
+
+- restate every line of code
+- describe obvious assignments or imports
+- become long design essays inside source files
+
 ## First Milestone Acceptance Criteria
 
 The first development milestone is complete when:

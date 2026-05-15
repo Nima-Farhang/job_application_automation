@@ -26,6 +26,9 @@ Do not skip ahead to provider integration or DOCX export before the markdown wor
 - Do not create or commit `.env`.
 - Do not add a UI, database, scraper, or application tracker.
 - Do not treat generated output as factual source data.
+- Every TypeScript source file and executable script must start with a brief comment explaining the file's responsibility.
+- Add concise internal comments for non-obvious workflow, validation, provider, or file ownership logic.
+- Avoid comments that merely repeat obvious code.
 
 ## Step 1 - Create The TypeScript Skeleton
 
@@ -613,4 +616,3 @@ npm run start -- finalize --job jobs/sample-job.txt --current-cv data/current_cv
 - All tests pass.
 - All expected markdown outputs exist.
 - The project can be explained from README.md plus the docs in `docs/`.
-
