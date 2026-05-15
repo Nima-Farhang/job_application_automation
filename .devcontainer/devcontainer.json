@@ -1,21 +1,25 @@
 {
-  "name": "job-application-automation",
+  "name": "job-application-automation-ts",
   "build": {
     "context": "..",
     "dockerfile": "Dockerfile"
   },
+  "workspaceFolder": "/workspaces/job_application_automation",
+  "remoteUser": "node",
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
         "redhat.vscode-yaml",
         "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "vitest.explorer",
         "openai.chatgpt"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/opt/venv/bin/python",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "npm.packageManager": "npm"
       }
     }
   },
