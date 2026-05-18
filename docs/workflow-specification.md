@@ -50,7 +50,7 @@ npm run start -- start --job jobs/<job_slug>.txt --current-cv data/current_cv.tx
 - current CV file
 - `data/base_profile.yaml`
 - prompt templates
-- CV formatting rules
+- Stage 0 prompt instructions
 
 ### Outputs
 
@@ -67,13 +67,13 @@ outputs/<job_slug>/stage2_reviewer_input.md
 2. Render Stage -1 prompt with job advert and base profile.
 3. Generate Stage -1 analysis through provider.
 4. Save `stage_minus1_analysis.md`.
-5. Render Stage 0 prompt with CV formatting rules.
+5. Render Stage 0 prompt.
 6. Generate Stage 0 acknowledgement through provider.
 7. Save `stage0_acknowledgement.md`.
-8. Render Stage 1 prompt with job advert, current CV, base profile, formatting rules, Stage -1 analysis, and Stage 0 acknowledgement.
+8. Render Stage 1 prompt with job advert, current CV, base profile, Stage -1 analysis, and Stage 0 acknowledgement.
 9. Generate Stage 1 draft through provider.
 10. Save `stage1_draft.md`.
-11. Render Stage 2 reviewer bundle from the job advert, base profile, formatting rules, Stage -1 analysis, and Stage 1 draft.
+11. Render Stage 2 reviewer bundle from the job advert, base profile, Stage -1 analysis, Stage 0 acknowledgement, and Stage 1 draft.
 12. Save `stage2_reviewer_input.md`.
 
 Stage 2 does not need a provider call in the first implementation.

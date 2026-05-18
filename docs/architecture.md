@@ -145,8 +145,7 @@ job-application-automation-ts/
 │   ├── stage-0.md
 │   ├── stage-1.md
 │   ├── stage-2-reviewer.md
-│   ├── stage-4-finalize.md
-│   └── cv-format-rules.md
+│   └── stage-4-finalize.md
 ├── data/
 │   ├── base_profile.yaml
 │   └── current_cv.txt

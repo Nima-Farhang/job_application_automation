@@ -27,7 +27,6 @@ prompts/
   stage-1.md
   stage-2-reviewer.md
   stage-4-finalize.md
-  cv-format-rules.md
 ```
 
 ## Sample Job Naming

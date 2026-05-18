@@ -175,7 +175,6 @@ prompts/stage-0.md
 prompts/stage-1.md
 prompts/stage-2-reviewer.md
 prompts/stage-4-finalize.md
-prompts/cv-format-rules.md
 ```
 
 ### Verification

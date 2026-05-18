@@ -20,7 +20,6 @@ prompts/stage-0.md
 prompts/stage-1.md
 prompts/stage-2-reviewer.md
 prompts/stage-4-finalize.md
-prompts/cv-format-rules.md
 ```
 
 Use `prompts/` consistently throughout the project. Do not introduce a second prompt directory.
@@ -33,7 +32,6 @@ Templates use double curly placeholders:
 {{ job_description }}
 {{ current_cv }}
 {{ base_profile }}
-{{ cv_format_rules }}
 {{ stage_minus1_analysis }}
 {{ stage0_acknowledgement }}
 {{ stage1_draft }}
@@ -59,7 +57,7 @@ Purpose: acknowledge and preserve CV formatting rules.
 
 Recommended variables:
 
-- `{{ cv_format_rules }}`
+- none; Stage 0 contains the formatting rules directly.
 
 ### Stage 1
 
@@ -70,7 +68,6 @@ Recommended variables:
 - `{{ job_description }}`
 - `{{ current_cv }}`
 - `{{ base_profile }}`
-- `{{ cv_format_rules }}`
 - `{{ stage_minus1_analysis }}`
 - `{{ stage0_acknowledgement }}`
 
@@ -82,8 +79,8 @@ Recommended variables:
 
 - `{{ job_description }}`
 - `{{ base_profile }}`
-- `{{ cv_format_rules }}`
 - `{{ stage_minus1_analysis }}`
+- `{{ stage0_acknowledgement }}`
 - `{{ stage1_draft }}`
 
 Stage 2 may be rendered and saved without a provider call.
@@ -97,7 +94,7 @@ Recommended variables:
 - `{{ job_description }}`
 - `{{ current_cv }}`
 - `{{ base_profile }}`
-- `{{ cv_format_rules }}`
+- `{{ stage0_acknowledgement }}`
 - `{{ stage1_draft }}`
 - `{{ reviewer_feedback }}`
 
@@ -115,6 +112,6 @@ Prompts should:
 
 - protect factual accuracy by grounding claims in `base_profile.yaml`
 - avoid inventing experience, employers, dates, credentials, or achievements
-- preserve the formatting intent from `cv-format-rules.md`
+- preserve the formatting intent established by `stage-0.md`
 - ask for concise, ATS-compatible output
 - keep CV and cover letter sections clearly separated in generated markdown

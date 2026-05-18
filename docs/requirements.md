@@ -12,7 +12,7 @@ The system must:
 - accept a job advert file as input
 - load the current CV from a text file
 - load the factual base profile from YAML
-- load CV formatting rules from a markdown prompt file
+- load CV formatting rules through the Stage 0 prompt
 - render prompt templates with explicit variables
 - call a text generation provider through an interface
 - write every stage output to disk
@@ -45,7 +45,7 @@ The workflow must:
 1. load the job advert
 2. load the current CV
 3. load the base profile
-4. load CV formatting rules
+4. load Stage 0 prompt instructions
 5. render the Stage -1 prompt
 6. generate and save Stage -1 analysis
 7. render the Stage 0 prompt
