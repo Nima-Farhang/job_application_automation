@@ -36,6 +36,17 @@ Every generated or assembled stage artifact must be written to disk. Later stage
 
 Any LLM call must go through the provider interface. Workflows must not import OpenAI, Gemini, or another SDK directly.
 
+### Stage Summary
+
+| Stage | Purpose | Main Inputs | Provider Call | Output |
+|---|---|---|---|---|
+| Stage -1 | Analyze the job advert and identify the hiring signal | job advert, base profile | Yes | `stage_minus1_analysis.md` |
+| Stage 0 | Establish and acknowledge CV formatting rules from `stage-0.md` | Stage 0 prompt instructions | Yes | `stage0_acknowledgement.md` |
+| Stage 1 | Generate the first-pass tailored CV and cover letter draft | job advert, current CV, base profile, Stage -1 analysis, Stage 0 acknowledgement | Yes | `stage1_draft.md` |
+| Stage 2 | Assemble the reviewer input bundle | job advert, base profile, Stage -1 analysis, Stage 0 acknowledgement, Stage 1 draft | No | `stage2_reviewer_input.md` |
+| Stage 3 | Generate or capture reviewer feedback | Stage 2 reviewer input bundle | Yes, or manual later | `stage3_reviewer_output.md` |
+| Stage 4 | Refine the draft into final markdown using reviewer feedback | job advert, current CV, base profile, Stage 1 draft, Stage 3 reviewer output | Yes | `stage4_final.md` |
+
 ## Start Workflow
 
 ### Command
