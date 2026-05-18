@@ -1,5 +1,7 @@
 // Defines the command-line entry point for the local job application automation tool.
 import { Command } from "commander";
+import { FakeTextGenerationProvider } from "../providers/fake-provider.js";
+import { runStartWorkflow } from "../workflows/start-workflow.js";
 
 const program = new Command();
 
@@ -8,4 +10,23 @@ program
   .description("Local CLI for staged job application document generation.")
   .version("0.1.0");
 
-program.parse();
+program
+  .command("start")
+  .description("Run Stage -1 through Stage 2 for a job advert.")
+  .requiredOption("--job <path>", "Path to the job advert text file.")
+  .requiredOption("--current-cv <path>", "Path to the current CV text file.")
+  .action(async (options: { job: string; currentCv: string }) => {
+    const provider = new FakeTextGenerationProvider();
+    const result = await runStartWorkflow(options.job, options.currentCv, provider);
+
+    console.log("Start workflow complete: " + result.outputDirectory);
+  });
+
+try {
+  await program.parseAsync(process.argv);
+} catch (error) {
+  const message = error instanceof Error ? error.message : String(error);
+
+  console.error(message);
+  process.exitCode = 1;
+}
