@@ -350,6 +350,8 @@ Example:
 OPENAI_API_KEY=your_api_key_here
 OPENAI_MODEL=gpt-5
 OPENAI_BASE_URL=https://api.openai.com/v1
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-2.5-pro
 ```
 
 Rules:

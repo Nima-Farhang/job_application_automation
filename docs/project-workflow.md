@@ -505,8 +505,9 @@ Implement a configuration module using zod.
 Support provider selection with a safe default of fake.
 
 Validate OpenAI settings only when the OpenAI provider is selected.
+Validate Gemini settings only when the Gemini provider is selected.
 
-Do not create a .env file and do not add live OpenAI calls in this step.
+Do not create a .env file and do not add live OpenAI or Gemini calls in this step.
 ```
 
 ### Expected Files
@@ -527,7 +528,9 @@ npm test
 
 - Fake provider remains the default.
 - Missing OpenAI credentials do not break fake-provider tests.
+- Missing Gemini credentials do not break fake-provider tests.
 - OpenAI configuration fails clearly when selected but incomplete.
+- Gemini configuration fails clearly when selected but incomplete.
 
 ## Step 12 - Add OpenAI Provider
 
@@ -571,7 +574,53 @@ npm test
 - Tests do not require network or secrets.
 - Workflow code still depends only on `TextGenerationProvider`.
 
-## Step 13 - Add DOCX Export
+## Step 13 - Add Google Gemini Provider
+
+### Goal
+
+Add live Gemini reviewer generation behind the existing provider interface.
+
+### Development Prompt
+
+```text
+Read docs/provider-and-configuration.md and docs/workflow-specification.md.
+
+Implement a Google Gemini provider behind TextGenerationProvider.
+
+Use settings from the configuration module.
+
+Keep fake provider as the default for tests.
+
+Do not print API keys or secrets in errors.
+
+Add unit tests using mocked client behavior only. Do not make network calls in tests.
+
+Wire provider selection so the review workflow can use Gemini for Stage 3 without importing Gemini SDK code in workflow code.
+```
+
+### Expected Files
+
+```text
+src/providers/gemini-provider.ts
+tests/gemini-provider.test.ts
+src/config/settings.ts
+src/cli/main.ts
+```
+
+### Verification
+
+```bash
+npm run typecheck
+npm test
+```
+
+### Done When
+
+- Gemini provider is selectable for manual reviewer runs.
+- Tests do not require network or secrets.
+- Review workflow code still depends only on `TextGenerationProvider`.
+
+## Step 14 - Add DOCX Export
 
 ### Goal
 
@@ -613,7 +662,7 @@ npm test
 - Exporter is isolated from workflows except for an explicit call.
 - Markdown pipeline still works without DOCX export when needed.
 
-## Step 14 - Final Manual End-To-End Verification
+## Step 15 - Final Manual End-To-End Verification
 
 ### Goal
 

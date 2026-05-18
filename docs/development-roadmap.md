@@ -173,7 +173,31 @@ Definition of done:
 - No secrets or `.env` files are committed.
 - `npm run typecheck` and `npm test` pass.
 
-## Phase 9 - DOCX Export
+## Phase 9 - Google Gemini Provider
+
+Implement:
+
+- Google Gemini provider
+- reviewer provider selection
+- Gemini environment configuration validation
+- model settings
+- provider error handling
+
+Acceptance criteria:
+
+- fake provider remains the default for tests
+- Gemini provider can be selected for manual reviewer runs
+- review workflow can use Gemini without importing Gemini SDK code directly
+
+Definition of done:
+
+- Gemini provider is behind the provider interface.
+- Tests use mocked client behavior only.
+- Missing secrets fail clearly when Gemini is selected.
+- No secrets or `.env` files are committed.
+- `npm run typecheck` and `npm test` pass.
+
+## Phase 10 - DOCX Export
 
 Implement only after markdown output is stable.
 

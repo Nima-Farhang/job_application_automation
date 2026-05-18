@@ -38,9 +38,18 @@ Responsibilities:
 - call the OpenAI API
 - return generated text to the workflow
 
-### Reviewer Provider
+### Google Gemini Provider
 
-Gemini or another reviewer provider is a later enhancement. Version 1 may use fake provider output or manually saved reviewer feedback.
+Required after the fake provider workflow is stable and the OpenAI provider is available for manual generation runs.
+
+Responsibilities:
+
+- read configuration from environment variables
+- call the Google Gemini API for reviewer feedback
+- return generated text to the review workflow
+- stay behind the same provider interface as every other model provider
+
+Version 1 may use fake provider output or manually saved reviewer feedback until this provider is implemented.
 
 ## Environment Variables
 
@@ -50,6 +59,8 @@ Expected variables:
 OPENAI_API_KEY=your_api_key_here
 OPENAI_MODEL=gpt-5
 OPENAI_BASE_URL=https://api.openai.com/v1
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-2.5-pro
 ```
 
 Rules:
@@ -82,12 +93,16 @@ Possible future variable:
 
 ```env
 TEXT_PROVIDER=fake
+REVIEWER_PROVIDER=fake
 ```
 
 Recommended early values:
 
 - `fake`
 - `openai`
+- `gemini`
+
+The generation workflow may use `TEXT_PROVIDER`, while the review workflow may use `REVIEWER_PROVIDER` so Gemini can be selected only for Stage 3 reviewer feedback.
 
 ## Error Handling
 

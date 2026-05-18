@@ -105,7 +105,9 @@ job-application-automation-ts/
 │   │   └── prompt-renderer.ts
 │   ├── providers/
 │   │   ├── text-generation-provider.ts
-│   │   └── openai-provider.ts
+│   │   ├── fake-provider.ts
+│   │   ├── openai-provider.ts
+│   │   └── gemini-provider.ts
 │   └── export/
 │       └── document-exporter.ts
 ├── tests/
@@ -129,6 +131,7 @@ Recommended first-version stack:
 - `zod` for configuration validation
 - `yaml` for reading `base_profile.yaml`
 - OpenAI SDK for model calls
+- Google Gemini SDK for reviewer model calls
 - `docx` package for later DOCX export
 - `vitest` for tests
 
@@ -190,6 +193,8 @@ Provided through secrets of Github codespace
 OPENAI_API_KEY=your_api_key_here
 OPENAI_MODEL=gpt-5
 OPENAI_BASE_URL=https://api.openai.com/v1
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-2.5-pro
 ```
 
 Do not create or commit `.env`.
@@ -273,7 +278,16 @@ Implement the `finalize` command:
 6. Call provider.
 7. Save Stage 4 final markdown.
 
-### Phase 8 — DOCX Export
+### Phase 8 — Provider Integrations
+
+Add live provider integration after the markdown workflow is stable:
+
+- OpenAI provider for generation stages.
+- Google Gemini provider for reviewer feedback.
+
+Keep both providers behind the provider interface and keep the fake provider as the default for tests.
+
+### Phase 9 — DOCX Export
 
 Add document export after markdown workflow is stable.
 
@@ -300,7 +314,7 @@ The first useful milestone is complete when the project can:
 4. Use a fake provider to simulate model responses.
 5. Write all expected markdown outputs into `outputs/<job_slug>/`.
 
-Only after that should the OpenAI provider be added.
+Only after that should the OpenAI provider and Google Gemini provider be added.
 
 ## Later Improvements
 
