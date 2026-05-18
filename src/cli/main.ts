@@ -1,6 +1,7 @@
 // Defines the command-line entry point for the local job application automation tool.
 import { Command } from "commander";
 import { FakeTextGenerationProvider } from "../providers/fake-provider.js";
+import { runReviewWorkflow } from "../workflows/review-workflow.js";
 import { runStartWorkflow } from "../workflows/start-workflow.js";
 
 const program = new Command();
@@ -20,6 +21,18 @@ program
     const result = await runStartWorkflow(options.job, options.currentCv, provider);
 
     console.log("Start workflow complete: " + result.outputDirectory);
+  });
+
+program
+  .command("review")
+  .description("Run Stage 3 reviewer feedback generation for a job advert.")
+  .requiredOption("--job <path>", "Path to the job advert text file.")
+  .requiredOption("--reviewer-input <path>", "Path to the Stage 2 reviewer input bundle.")
+  .action(async (options: { job: string; reviewerInput: string }) => {
+    const provider = new FakeTextGenerationProvider();
+    const result = await runReviewWorkflow(options.job, options.reviewerInput, provider);
+
+    console.log("Review workflow complete: " + result.outputPath);
   });
 
 try {
