@@ -6,7 +6,16 @@ This file defines step-by-step development prompts for building the TypeScript r
 
 ## Source Of Truth
 
+Read Below documents:
+
+`README.md`
+`docs/*`
+
+Get yourself familiarize with the project and its architecture
+
 If project documents conflict, follow `docs/workflow-specification.md` for runtime behavior, CLI commands, stage order, and output filenames. Follow this file, `docs/project-workflow.md`, for implementation order and phase boundaries.
+
+Do not produce any code yet
 
 ## How To Use This File
 
