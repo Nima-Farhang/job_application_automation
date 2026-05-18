@@ -1,0 +1,1 @@
+below are the prompts from google gemini to further refine the cv and cover letter you developed. use them to further refine the cv and cover letter. give me the final revised version of cv and cover letter in form of .docx to download
