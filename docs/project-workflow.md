@@ -160,7 +160,15 @@ Create initial editable markdown prompt templates.
 ```text
 Read docs/prompt-template-specification.md and docs/workflow-specification.md.
 
-Create the initial prompt markdown files under prompts/.
+the initial prompt markdown files are already under
+
+prompts/stage-minus-1.md
+prompts/stage-0.md
+prompts/stage-1.md
+prompts/stage-2-reviewer.md
+prompts/stage-4-finalize.md.
+
+review them and make currection or improvements to better fit the project purpose
 
 Include clear placeholders for each stage using the double-curly format from the prompt template specification.
 
