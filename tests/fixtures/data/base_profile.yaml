@@ -1,0 +1,7 @@
+name: Sample Person
+skills:
+  - TypeScript
+  - Automation
+experience:
+  current_role: Platform Engineer
+  years: 5
