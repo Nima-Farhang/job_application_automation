@@ -1,6 +1,7 @@
 // Defines the command-line entry point for the local job application automation tool.
 import { Command } from "commander";
 import { FakeTextGenerationProvider } from "../providers/fake-provider.js";
+import { runFinalizeWorkflow } from "../workflows/finalize-workflow.js";
 import { runReviewWorkflow } from "../workflows/review-workflow.js";
 import { runStartWorkflow } from "../workflows/start-workflow.js";
 
@@ -33,6 +34,19 @@ program
     const result = await runReviewWorkflow(options.job, options.reviewerInput, provider);
 
     console.log("Review workflow complete: " + result.outputPath);
+  });
+
+program
+  .command("finalize")
+  .description("Run Stage 4 final markdown generation for a job advert.")
+  .requiredOption("--job <path>", "Path to the job advert text file.")
+  .requiredOption("--current-cv <path>", "Path to the current CV text file.")
+  .requiredOption("--reviewer-output <path>", "Path to the Stage 3 reviewer output file.")
+  .action(async (options: { job: string; currentCv: string; reviewerOutput: string }) => {
+    const provider = new FakeTextGenerationProvider();
+    const result = await runFinalizeWorkflow(options.job, options.currentCv, options.reviewerOutput, provider);
+
+    console.log("Finalize workflow complete: " + result.outputPath);
   });
 
 try {
