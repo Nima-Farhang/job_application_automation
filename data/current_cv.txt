@@ -1,42 +1,91 @@
 Nima Farhang
 Auckland, New Zealand
-+64 21 122 9743 | nima@farhang.io
++64 21 122 9743 | Farhang.nima@gmail.com
 
 PROFESSIONAL SUMMARY
 
-Principal-level Data and Analytics Engineer with 18+ years of experience designing and delivering enterprise data platforms across telecommunications, government, and cloud environments. Experienced in translating complex technical roadmaps into practical business outcomes while guiding stakeholders from strategy through to implementation.
+Principal Data and Automation Engineer with 18+ years’ experience leading enterprise data, analytics and automation platforms across telecommunications and government environments. Governed enterprise data platform processing approximately 2.5TB daily across 70TB of production datasets while defining technical roadmaps, engineering standards, and long-term platform capability.
 
-Currently responsible for a 70TB Snowflake + AWS data platform ingesting ~2.5TB of data daily from 25 production systems, and the operation of an enterprise automation platform executing ~240,000 jobs per day. My work focuses on architecting scalable data platforms, guiding engineering delivery, and enabling organisations to operationalise analytics and AI capabilities.
+Technology leader combining software engineering discipline, cloud-agnostic data architecture, and cross-functional delivery. Experienced bridging software engineers and analysts to build trusted data foundations, product usage insights, and scalable infrastructure that enables business growth.
 
 CORE CAPABILITIES
 
-• Enterprise Data Platform Architecture
-• Cloud Data Platforms (AWS, Snowflake, Azure exposure)
-• Data Engineering & Pipeline Design (dbt, Spark, SQL, Python)
-• Modern Data Warehouse & Lakehouse Architecture
-• Data Modelling (Kimball / Data Vault)
-• Data Governance, RBAC & Secure Platform Operations
-• Data Strategy & Architecture Advisory
-• Stakeholder Engagement & Executive Communication
-• Engineering Standards, Mentoring & Delivery Leadership
+• Data Platform Ownership & Technical Roadmaps
+• Data Engineering Leadership & Mentoring
+• Product Analytics & Usage Data Foundations
+• Data Warehousing, Data Lakes & Lakehouse Architecture
+• Cloud Data Platforms (AWS, Azure, GCP Concepts)
+• Snowflake, dbt, SQL & Data Modelling
+• Apache Spark, AWS Glue & Apache Iceberg
+• Software Engineering Practices (Git, Clean Code, Decomposition)
+• CI/CD for Data Platforms (Azure DevOps, GitHub Actions)
+• Data Quality, Security, RBAC & Governance
+• Cross-Functional Delivery with Engineers & Analysts
+• Platform Reliability & Performance Optimisation
+
+KEY ACHIEVEMENTS
+
+• Governed enterprise data platform processing approximately 2.5TB daily across 70TB of production datasets
+• Led architecture and delivery direction for Azure to AWS migration using AWS Glue, Spark and Iceberg
+• Owned enterprise automation platform executing approximately 240,000 jobs per day across four servers
+• Built and led engineering teams of up to seven engineers
+• Delivered national-scale technical strategy through government and industry alignment
 
 PROFESSIONAL EXPERIENCE
 
 One New Zealand — Principal Data & Automation Engineer | 2024 – Present
-Responsible for architecture oversight and operational ownership of enterprise data and automation platforms supporting telecommunications analytics and operational systems.
+• Defined platform architecture and delivery patterns supporting Azure to AWS migration
+• Worked closely with architects to define the target AWS data platform structure
+• Oversaw migration implementation across platform and data engineering functions
+• Oversaw AWS Glue migration work delivered by one platform engineer and one data engineer
+• Owned enterprise Rundeck automation platform operating across four on-premise servers and executing approximately 240,000 jobs per day
+• Established engineering standards, technical governance and delivery quality practices
+• Worked across architecture, operations and stakeholder groups to mature platform capability
 
-One New Zealand — Senior Data Engineer (Technical Lead) | 2022 – 2024
-Technical lead for development and operation of the WNI enterprise data platform supporting telecommunications network analytics.
+One New Zealand — Senior Data Engineer | 2022 – 2024
+• Led design, development and long-term maintenance of WNI data platform integrating 25 enterprise telecommunications sources
+• Supported Snowflake production platform processing approximately 2.5TB daily across 70TB of production data
+• Worked on a platform with an approximate NZD 500,000 budget
+• Implemented dbt, Azure Data Factory and CI/CD delivery patterns using Azure DevOps
+• Collaborated with analysts and engineering stakeholders to deliver trusted analytical datasets
 
 One New Zealand — Capacity Management Engineer | 2019 – 2022
+• Developed predictive models to forecast future capacity demand and seasonality
+• Governed analytical workflows supporting infrastructure planning
+• Improved repeatability and operational decision making through automated data pipelines
 
 UtilEz — Founder & Technical Lead | 2022 – 2024
+• Founded a telecommunications broker company
+• Designed and delivered a full-stack cloud application using React, Django and AWS
+• Deployed the solution in AWS using AWS CDK
+• Implemented software delivery practices supporting rapid iteration
 
 Ministry of Business, Innovation & Employment — Technical Advisor | 2015 – 2019
+• Participated in developing New Zealand spectrum allocation for 5G
+• Developed and presented the initial government proposal on 5G strategy
+• Facilitated telecommunications industry engagement to agree 5G technical parameters
+• Chaired joint industry-government technical working groups
+• Negotiated technical requirements across government and industry participants
 
 Mycom International — Team Leader, Network Optimisation | 2012 – 2014
+• Established and managed a team of seven engineers
+• Defined team responsibilities and delivery procedures
+• Presented progress to the customer weekly and quarterly
+• Met yearly targets, resulting in extension of the project contract for one year
 
 Nokia Siemens Networks — Telecommunications Engineer | 2007 – 2012
+• Delivered telecommunications engineering work across large-scale infrastructure
+• Supported engineering analytics and operational delivery
+
+SELECTED PROJECT
+
+Data Product Demo
+• Built a self-contained, end-to-end data product in a single repository to demonstrate a modern data platform pattern for small companies
+• Defined infrastructure using Terraform
+• Transformed data using dbt
+• Visualised data using Streamlit
+• Version controlled infrastructure, transformation and application code in one repository
+• Used GitHub Actions CI/CD pipelines
 
 EDUCATION
 

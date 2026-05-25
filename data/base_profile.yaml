@@ -2,127 +2,195 @@ identity:
   name: Nima Farhang
   location: Auckland, New Zealand
   phone: "+64 21 122 9743"
-  email: nima@farhang.io
+  email: Farhang.nima@gmail.com
 
 core_profile:
   years_experience: "18+"
-  headline: "Principal Data & Automation Engineer / Data Platform Architect"
+  headline: Principal Data and Automation Engineer
+  positioning:
+    - Principal-level data, analytics and automation engineer across telecommunications and government environments.
+    - Technology leader combining software engineering discipline, cloud-agnostic data architecture and cross-functional delivery.
+    - Experienced bridging software engineers, analysts, architecture, operations and stakeholder groups to build trusted data foundations and scalable platforms.
   strengths:
+    - Data platform ownership and technical roadmaps
     - Enterprise data platform architecture
-    - Analytics engineering and data modelling
-    - Cloud migration leadership
-    - Stakeholder engagement
-    - Technical leadership and standards definition
+    - Data engineering leadership and mentoring
+    - Product analytics and usage data foundations
+    - Data warehousing, data lakes and lakehouse architecture
+    - Cloud data platforms across AWS, Azure and GCP concepts
+    - Snowflake, dbt, SQL and data modelling
+    - Apache Spark, AWS Glue and Apache Iceberg
+    - Software engineering practices including Git, clean code and decomposition
+    - CI/CD for data platforms using Azure DevOps and GitHub Actions
+    - Data quality, security, RBAC and governance
+    - Cross-functional delivery with engineers and analysts
+    - Platform reliability and performance optimisation
+
+key_metrics:
+  enterprise_data_platform:
+    data_volume: Approximately 70TB of production datasets
+    daily_ingestion: Approximately 2.5TB daily
+    source_systems: 25 enterprise telecommunications sources
+    platform_budget: Approximately NZD 500,000
+    core_stack:
+      - Snowflake
+      - dbt
+      - Azure Data Factory
+      - Azure DevOps
+  automation_platform:
+    platform: Rundeck
+    deployment: Four on-premise servers
+    daily_execution_volume: Approximately 240,000 jobs per day
+    users: Network engineering teams running script execution and infrastructure health checks
+  leadership:
+    largest_team_size: Seven engineers
 
 roles:
   - company: One New Zealand
     title: Principal Data & Automation Engineer
     start: "2024"
-    end: "Present"
-    summary: "Sets architecture direction, engineering standards, and operational governance across data and automation platforms."
+    end: Present
+    summary: Owns architecture direction, engineering standards and operational governance across enterprise data and automation platforms.
+    responsibilities:
+      - Defined platform architecture and delivery patterns supporting Azure to AWS migration.
+      - Worked closely with architects to define the structure of the target AWS data platform.
+      - Oversaw migration implementation across platform and data engineering functions.
+      - Oversaw AWS Glue migration development delivered by one platform engineer and one data engineer.
+      - Owned enterprise Rundeck automation platform operating across four on-premise servers.
+      - Established engineering standards, technical governance and delivery quality practices.
+      - Worked across architecture, operations and stakeholder groups to mature platform capability.
     facts:
-      - "Worked closely with architects to define the platform structure for migration from Azure to AWS."
-      - "Oversaw migration development in AWS Glue delivered by one platform engineer and one data engineer."
-      - "Technology stack included AWS Glue, Apache Spark, Apache Iceberg, and a data lake solution."
-      - "Owns and operates a Rundeck automation platform running on four on-premise servers."
-      - "Platform executes approximately 240,000 jobs per day."
+      - Migration technology stack included AWS Glue, Apache Spark, Apache Iceberg and a data lake solution.
+      - Rundeck platform executes approximately 240,000 jobs per day.
     signals:
       - architecture leadership
       - platform ownership
-      - standards definition
+      - cloud migration leadership
+      - engineering standards
       - operational governance
+      - platform reliability
 
   - company: One New Zealand
-    title: Senior Data Engineer (Technical Lead)
+    title: Senior Data Engineer
     start: "2022"
     end: "2024"
-    summary: "Involved in design, development, and long-term maintenance of the WNI data platform."
+    summary: Led design, development and long-term maintenance of the WNI enterprise data platform supporting telecommunications network analytics.
+    responsibilities:
+      - Led design, development and long-term maintenance of WNI data platform integrating 25 enterprise telecommunications sources.
+      - Supported Snowflake production platform processing approximately 2.5TB daily across 70TB of production data.
+      - Implemented dbt, Azure Data Factory and CI/CD delivery patterns.
+      - Collaborated with analysts and engineering stakeholders to deliver trusted analytical datasets.
     facts:
-      - "Platform ingests data from 25 different telecommunications network sources."
-      - "Platform ingests approximately 2.5 TB of data daily."
-      - "Total size of the platform is approximately 70 TB."
-      - "Budget of the platform is approximately 500,000 NZD."
-      - "Technology stack used Snowflake, dbt, Azure Data Factory, and Azure DevOps."
+      - Platform budget was approximately NZD 500,000.
+      - Technology stack included Snowflake, dbt, Azure Data Factory and Azure DevOps.
     signals:
-      - large-scale platform delivery
-      - data modelling
+      - large-scale data platform delivery
       - analytics engineering
+      - data modelling
+      - CI/CD for data platforms
       - enterprise stakeholder support
 
   - company: One New Zealand
     title: Capacity Management Engineer
     start: "2019"
     end: "2022"
-    summary: "Developed predictive analytics to support network capacity planning."
-    facts:
-      - "Developed machine learning models to predict future capacity demands and seasonality."
+    summary: Developed predictive analytics and governed analytical workflows supporting infrastructure planning.
+    responsibilities:
+      - Developed machine learning models to predict future capacity demands and seasonality.
+      - Improved repeatability and operational decision making through automated data pipelines.
     signals:
       - predictive analytics
+      - infrastructure planning
       - business forecasting
+      - workflow automation
 
   - company: UtilEz
     title: Founder & Technical Lead
     start: "2022"
     end: "2024"
-    summary: "Founded a telecommunications broker company and built its digital platform."
-    facts:
-      - "Designed and deployed a full-stack website with a React frontend and Django backend."
-      - "Deployed the solution in AWS using AWS CDK."
+    summary: Founded a telecommunications broker company and designed its full-stack digital platform.
+    responsibilities:
+      - Designed and delivered a full-stack cloud application using React, Django and AWS.
+      - Deployed the solution in AWS using AWS CDK.
+      - Implemented software delivery practices supporting rapid iteration.
     signals:
       - entrepreneurship
       - product thinking
       - full-stack delivery
+      - AWS application delivery
 
   - company: Ministry of Business, Innovation & Employment
     title: Technical Advisor
     start: "2015"
     end: "2019"
-    summary: "Provided technical advisory support in the telecommunications portfolio."
-    facts:
-      - "Participated in developing New Zealand spectrum allocation for 5G."
-      - "Developed and presented the initial government proposal on 5G strategy."
-      - "Facilitated agreement on technical parameters of 5G by chairing the joint industry-government technical working group."
+    summary: Provided telecommunications technical advisory support across government and industry stakeholders.
+    responsibilities:
+      - Participated in developing New Zealand spectrum allocation for 5G.
+      - Developed and presented the initial government proposal on 5G strategy.
+      - Facilitated industry agreement on 5G technical parameters by chairing the joint industry-government technical working group.
+      - Developed technical strategy and chaired multi-stakeholder working groups.
+      - Negotiated technical requirements across government and industry participants.
     signals:
-      - government-industry collaboration
       - strategic advisory
+      - government-industry collaboration
       - executive communication
+      - stakeholder negotiation
+      - national-scale technical strategy
 
   - company: Mycom International
-    title: Team Leader — Network Optimisation
+    title: Team Leader, Network Optimisation
     start: "2012"
     end: "2014"
-    summary: "Led a team delivering network optimisation work."
-    facts:
-      - "Established and managed a team of 7 people."
-      - "Defined responsibilities and procedures."
-      - "Presented weekly and quarterly progress to the customer."
-      - "Met yearly targets resulting in extension of the project contract for one year."
+    summary: Established and managed a network optimisation team delivering customer outcomes.
+    responsibilities:
+      - Established and managed a team of seven engineers.
+      - Defined team responsibilities and delivery procedures.
+      - Presented progress to the customer weekly and quarterly.
+      - Met yearly targets, resulting in extension of the project contract for one year.
     signals:
       - people leadership
       - delivery management
       - client reporting
+      - team establishment
 
   - company: Nokia Siemens Networks
     title: Telecommunications Engineer
     start: "2007"
     end: "2012"
-    summary: "Worked in telecommunications engineering roles."
-    facts:
-      - "Delivered telecommunications engineering work across large-scale infrastructure."
+    summary: Supported telecommunications engineering, analytics and operational delivery across large-scale infrastructure.
+    responsibilities:
+      - Delivered telecommunications engineering work across large-scale infrastructure.
+      - Supported engineering analytics and operational delivery.
     signals:
       - engineering fundamentals
-      - telecom domain depth
+      - telecommunications domain depth
+      - operational delivery
 
 projects:
   - name: Data Product Demo
     type: side_project
-    summary: "Self-contained end-to-end data product in a single repository to demonstrate a modern data platform for small companies."
+    summary: Self-contained end-to-end data product in a single repository demonstrating a modern data platform pattern for small companies.
     facts:
-      - "Defines infrastructure using Terraform."
-      - "Transforms data using dbt."
-      - "Visualises data using Streamlit."
-      - "Uses version-controlled code and separate CI/CD pipelines with GitHub Actions."
+      - Defines infrastructure using Terraform.
+      - Transforms data using dbt.
+      - Visualises data using Streamlit.
+      - Keeps infrastructure, transformation and application code version controlled in one repository.
+      - Uses GitHub Actions CI/CD pipelines.
     signals:
       - self-service analytics
-      - demo platform
       - modern data stack
+      - data product delivery
+      - Terraform
+      - dbt
+      - Streamlit
+      - GitHub Actions
+
+education:
+  - degree: Master of Electrical Engineering
+    institution: University of Auckland
+  - degree: Bachelor of Engineering
+    field: Telecommunications
+
+source_notes:
+  - Updated from Nima_Farhang_lead_CV.docx and experience_pool.txt.
+  - Use this profile as structured source data for CV tailoring, cover letter generation and interview preparation workflows.
