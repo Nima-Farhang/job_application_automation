@@ -48,9 +48,17 @@ program
   .action(async (options: { job: string; currentCv: string; reviewerOutput: string }) => {
     const settings = loadSettings();
     const provider = createTextGenerationProvider(settings);
-    const result = await runFinalizeWorkflow(options.job, options.currentCv, options.reviewerOutput, provider);
+    const result = await runFinalizeWorkflow(options.job, options.currentCv, options.reviewerOutput, provider, {
+      exportDocx: true,
+    });
 
     console.log("Finalize workflow complete: " + result.outputPath);
+
+    if (result.finalDocuments !== undefined) {
+      console.log("DOCX export complete: " + result.finalDocuments.outputDirectory);
+      console.log("- " + result.finalDocuments.cvPath);
+      console.log("- " + result.finalDocuments.coverLetterPath);
+    }
   });
 
 try {

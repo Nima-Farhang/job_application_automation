@@ -1,5 +1,6 @@
 // Orchestrates the final markdown workflow stage using reviewer feedback and saved draft artifacts.
 import path from "node:path";
+import { exportFinalDocuments, type DocumentExportResult } from "../export/document-exporter.js";
 import { readBaseProfileAsPromptText, readTextFile } from "../files/file-reader.js";
 import { writeMarkdownOutput } from "../files/output-writer.js";
 import { deriveJobSlug } from "../files/slugify.js";
@@ -10,12 +11,14 @@ export interface FinalizeWorkflowOptions {
   outputsRoot?: string;
   baseProfilePath?: string;
   stage4PromptPath?: string;
+  exportDocx?: boolean;
 }
 
 export interface FinalizeWorkflowResult {
   jobSlug: string;
   outputDirectory: string;
   outputPath: string;
+  finalDocuments?: DocumentExportResult;
 }
 
 const DEFAULT_OUTPUTS_ROOT = "outputs";
@@ -54,10 +57,15 @@ export async function runFinalizeWorkflow(
   });
   const finalMarkdown = await provider.generate(stage4Prompt);
   const outputPath = await writeMarkdownOutput(outputDirectory, "stage4_final.md", finalMarkdown);
+  const finalDocuments =
+    options.exportDocx === true
+      ? await exportFinalDocuments(jobSlug, finalMarkdown, { outputsRoot: options.outputsRoot ?? DEFAULT_OUTPUTS_ROOT })
+      : undefined;
 
   return {
     jobSlug,
     outputDirectory,
     outputPath,
+    finalDocuments,
   };
 }
