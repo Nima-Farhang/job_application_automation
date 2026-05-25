@@ -9,6 +9,7 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@google/genai": "^2.6.0",
     "commander": "^12.1.0",
     "openai": "^6.39.0",
     "yaml": "^2.6.1",

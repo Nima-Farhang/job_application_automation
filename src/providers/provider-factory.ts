@@ -1,6 +1,7 @@
 // Selects configured text generation providers for CLI workflows.
 import type { AppSettings, ProviderName } from "../config/settings.js";
 import { FakeTextGenerationProvider } from "./fake-provider.js";
+import { GeminiTextGenerationProvider } from "./gemini-provider.js";
 import { OpenAITextGenerationProvider } from "./openai-provider.js";
 import type { TextGenerationProvider } from "./text-generation-provider.js";
 
@@ -25,5 +26,13 @@ function createProvider(providerName: ProviderName, settings: AppSettings): Text
     return new OpenAITextGenerationProvider(settings.openai);
   }
 
-  throw new Error("Gemini provider selection is configured, but Gemini provider is not implemented yet.");
+  if (providerName === "gemini") {
+    if (settings.gemini === undefined) {
+      throw new Error("Gemini provider selected, but Gemini settings were not loaded.");
+    }
+
+    return new GeminiTextGenerationProvider(settings.gemini);
+  }
+
+  throw new Error("Unsupported provider selected: " + providerName);
 }
