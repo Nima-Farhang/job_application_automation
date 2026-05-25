@@ -3,7 +3,7 @@ import { z } from "zod";
 
 const providerSchema = z.preprocess(
   normalizeProviderName,
-  z.enum(["fake", "openai", "gemini"]).default("fake"),
+  z.enum(["fake", "openai", "gemini"]).optional(),
 );
 
 const optionalStringSchema = z.preprocess(normalizeOptionalString, z.string().optional());
@@ -39,14 +39,13 @@ export interface AppSettings {
 
 export function loadSettings(environment: NodeJS.ProcessEnv = process.env): AppSettings {
   const parsedEnvironment = parseRawEnvironment(environment);
-  const selectedProviders = new Set<ProviderName>([
-    parsedEnvironment.TEXT_PROVIDER,
-    parsedEnvironment.REVIEWER_PROVIDER,
-  ]);
+  const textProvider = parsedEnvironment.TEXT_PROVIDER ?? inferTextProvider(parsedEnvironment);
+  const reviewerProvider = parsedEnvironment.REVIEWER_PROVIDER ?? inferReviewerProvider(parsedEnvironment);
+  const selectedProviders = new Set<ProviderName>([textProvider, reviewerProvider]);
 
   return {
-    textProvider: parsedEnvironment.TEXT_PROVIDER,
-    reviewerProvider: parsedEnvironment.REVIEWER_PROVIDER,
+    textProvider,
+    reviewerProvider,
     openai: selectedProviders.has("openai") ? buildOpenAISettings(parsedEnvironment) : undefined,
     gemini: selectedProviders.has("gemini") ? buildGeminiSettings(parsedEnvironment) : undefined,
   };
@@ -114,6 +113,15 @@ function normalizeProviderName(value: unknown): unknown {
   const normalizedValue = normalizeOptionalString(value);
 
   return typeof normalizedValue === "string" ? normalizedValue.toLowerCase() : normalizedValue;
+}
+
+// Codespace secrets should enable live runs without requiring provider selector env vars.
+function inferTextProvider(environment: z.infer<typeof rawEnvironmentSchema>): ProviderName {
+  return environment.OPENAI_API_KEY === undefined ? "fake" : "openai";
+}
+
+function inferReviewerProvider(environment: z.infer<typeof rawEnvironmentSchema>): ProviderName {
+  return environment.GEMINI_API_KEY === undefined ? "fake" : "gemini";
 }
 
 function formatZodIssues(error: z.ZodError): string {

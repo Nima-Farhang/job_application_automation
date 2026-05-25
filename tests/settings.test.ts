@@ -13,6 +13,34 @@ describe("loadSettings", () => {
     });
   });
 
+  it("infers live providers from configured credentials", () => {
+    const settings = loadSettings({
+      OPENAI_API_KEY: "openai-key",
+      GEMINI_API_KEY: "gemini-key",
+    });
+
+    expect(settings.textProvider).toBe("openai");
+    expect(settings.reviewerProvider).toBe("gemini");
+    expect(settings.openai?.apiKey).toBe("openai-key");
+    expect(settings.gemini?.apiKey).toBe("gemini-key");
+  });
+
+  it("allows explicit fake providers to override configured credentials", () => {
+    const settings = loadSettings({
+      TEXT_PROVIDER: "fake",
+      REVIEWER_PROVIDER: "fake",
+      OPENAI_API_KEY: "openai-key",
+      GEMINI_API_KEY: "gemini-key",
+    });
+
+    expect(settings).toEqual({
+      textProvider: "fake",
+      reviewerProvider: "fake",
+      openai: undefined,
+      gemini: undefined,
+    });
+  });
+
   it("normalizes selected provider names", () => {
     const settings = loadSettings({
       TEXT_PROVIDER: " OpenAI ",
