@@ -1,6 +1,7 @@
 // Defines the command-line entry point for the local job application automation tool.
 import { Command } from "commander";
-import { FakeTextGenerationProvider } from "../providers/fake-provider.js";
+import { loadSettings } from "../config/settings.js";
+import { createReviewerProvider, createTextGenerationProvider } from "../providers/provider-factory.js";
 import { runFinalizeWorkflow } from "../workflows/finalize-workflow.js";
 import { runReviewWorkflow } from "../workflows/review-workflow.js";
 import { runStartWorkflow } from "../workflows/start-workflow.js";
@@ -18,7 +19,8 @@ program
   .requiredOption("--job <path>", "Path to the job advert text file.")
   .requiredOption("--current-cv <path>", "Path to the current CV text file.")
   .action(async (options: { job: string; currentCv: string }) => {
-    const provider = new FakeTextGenerationProvider();
+    const settings = loadSettings();
+    const provider = createTextGenerationProvider(settings);
     const result = await runStartWorkflow(options.job, options.currentCv, provider);
 
     console.log("Start workflow complete: " + result.outputDirectory);
@@ -30,7 +32,8 @@ program
   .requiredOption("--job <path>", "Path to the job advert text file.")
   .requiredOption("--reviewer-input <path>", "Path to the Stage 2 reviewer input bundle.")
   .action(async (options: { job: string; reviewerInput: string }) => {
-    const provider = new FakeTextGenerationProvider();
+    const settings = loadSettings();
+    const provider = createReviewerProvider(settings);
     const result = await runReviewWorkflow(options.job, options.reviewerInput, provider);
 
     console.log("Review workflow complete: " + result.outputPath);
@@ -43,7 +46,8 @@ program
   .requiredOption("--current-cv <path>", "Path to the current CV text file.")
   .requiredOption("--reviewer-output <path>", "Path to the Stage 3 reviewer output file.")
   .action(async (options: { job: string; currentCv: string; reviewerOutput: string }) => {
-    const provider = new FakeTextGenerationProvider();
+    const settings = loadSettings();
+    const provider = createTextGenerationProvider(settings);
     const result = await runFinalizeWorkflow(options.job, options.currentCv, options.reviewerOutput, provider);
 
     console.log("Finalize workflow complete: " + result.outputPath);
