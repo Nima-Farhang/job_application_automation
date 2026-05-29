@@ -1,16 +1,17 @@
 identity:
   name: Nima Farhang
   location: Auckland, New Zealand
-  phone: "+64 21 122 9743"
+  phone: +64 21 122 9743
   email: Farhang.nima@gmail.com
-
 core_profile:
-  years_experience: "18+"
+  years_experience: 18+
   headline: Principal Data and Automation Engineer
   positioning:
     - Principal-level data, analytics and automation engineer across telecommunications and government environments.
-    - Technology leader combining software engineering discipline, cloud-agnostic data architecture and cross-functional delivery.
-    - Experienced bridging software engineers, analysts, architecture, operations and stakeholder groups to build trusted data foundations and scalable platforms.
+    - Technology leader combining software engineering discipline, cloud-agnostic data architecture and cross-functional
+      delivery.
+    - Experienced bridging software engineers, analysts, architecture, operations and stakeholder groups to build
+      trusted data foundations and scalable platforms.
   strengths:
     - Data platform ownership and technical roadmaps
     - Enterprise data platform architecture
@@ -25,7 +26,10 @@ core_profile:
     - Data quality, security, RBAC and governance
     - Cross-functional delivery with engineers and analysts
     - Platform reliability and performance optimisation
-
+    - Reusable platform and product blueprint design
+    - AWS platform foundations using Terraform, IAM, S3, logging, secrets and networking
+    - Full-stack application delivery with React, Django REST Framework, Docker and PostgreSQL
+    - Portfolio project documentation, ADRs and reproducible developer environments
 key_metrics:
   enterprise_data_platform:
     data_volume: Approximately 70TB of production datasets
@@ -44,13 +48,13 @@ key_metrics:
     users: Network engineering teams running script execution and infrastructure health checks
   leadership:
     largest_team_size: Seven engineers
-
 roles:
   - company: One New Zealand
     title: Principal Data & Automation Engineer
-    start: "2024"
+    start: '2024'
     end: Present
-    summary: Owns architecture direction, engineering standards and operational governance across enterprise data and automation platforms.
+    summary: Owns architecture direction, engineering standards and operational governance across enterprise data
+      and automation platforms.
     responsibilities:
       - Defined platform architecture and delivery patterns supporting Azure to AWS migration.
       - Worked closely with architects to define the structure of the target AWS data platform.
@@ -69,14 +73,15 @@ roles:
       - engineering standards
       - operational governance
       - platform reliability
-
   - company: One New Zealand
     title: Senior Data Engineer
-    start: "2022"
-    end: "2024"
-    summary: Led design, development and long-term maintenance of the WNI enterprise data platform supporting telecommunications network analytics.
+    start: '2022'
+    end: '2024'
+    summary: Led design, development and long-term maintenance of the WNI enterprise data platform supporting telecommunications
+      network analytics.
     responsibilities:
-      - Led design, development and long-term maintenance of WNI data platform integrating 25 enterprise telecommunications sources.
+      - Led design, development and long-term maintenance of WNI data platform integrating 25 enterprise telecommunications
+        sources.
       - Supported Snowflake production platform processing approximately 2.5TB daily across 70TB of production data.
       - Implemented dbt, Azure Data Factory and CI/CD delivery patterns.
       - Collaborated with analysts and engineering stakeholders to deliver trusted analytical datasets.
@@ -89,11 +94,10 @@ roles:
       - data modelling
       - CI/CD for data platforms
       - enterprise stakeholder support
-
   - company: One New Zealand
     title: Capacity Management Engineer
-    start: "2019"
-    end: "2022"
+    start: '2019'
+    end: '2022'
     summary: Developed predictive analytics and governed analytical workflows supporting infrastructure planning.
     responsibilities:
       - Developed machine learning models to predict future capacity demands and seasonality.
@@ -103,11 +107,10 @@ roles:
       - infrastructure planning
       - business forecasting
       - workflow automation
-
   - company: UtilEz
     title: Founder & Technical Lead
-    start: "2022"
-    end: "2024"
+    start: '2022'
+    end: '2024'
     summary: Founded a telecommunications broker company and designed its full-stack digital platform.
     responsibilities:
       - Designed and delivered a full-stack cloud application using React, Django and AWS.
@@ -118,16 +121,16 @@ roles:
       - product thinking
       - full-stack delivery
       - AWS application delivery
-
   - company: Ministry of Business, Innovation & Employment
     title: Technical Advisor
-    start: "2015"
-    end: "2019"
+    start: '2015'
+    end: '2019'
     summary: Provided telecommunications technical advisory support across government and industry stakeholders.
     responsibilities:
       - Participated in developing New Zealand spectrum allocation for 5G.
       - Developed and presented the initial government proposal on 5G strategy.
-      - Facilitated industry agreement on 5G technical parameters by chairing the joint industry-government technical working group.
+      - Facilitated industry agreement on 5G technical parameters by chairing the joint industry-government technical
+        working group.
       - Developed technical strategy and chaired multi-stakeholder working groups.
       - Negotiated technical requirements across government and industry participants.
     signals:
@@ -136,11 +139,10 @@ roles:
       - executive communication
       - stakeholder negotiation
       - national-scale technical strategy
-
   - company: Mycom International
     title: Team Leader, Network Optimisation
-    start: "2012"
-    end: "2014"
+    start: '2012'
+    end: '2014'
     summary: Established and managed a network optimisation team delivering customer outcomes.
     responsibilities:
       - Established and managed a team of seven engineers.
@@ -152,11 +154,10 @@ roles:
       - delivery management
       - client reporting
       - team establishment
-
   - company: Nokia Siemens Networks
     title: Telecommunications Engineer
-    start: "2007"
-    end: "2012"
+    start: '2007'
+    end: '2012'
     summary: Supported telecommunications engineering, analytics and operational delivery across large-scale infrastructure.
     responsibilities:
       - Delivered telecommunications engineering work across large-scale infrastructure.
@@ -165,32 +166,190 @@ roles:
       - engineering fundamentals
       - telecommunications domain depth
       - operational delivery
-
 projects:
+  - name: Data Platform Demo
+    type: side_project
+    positioning: Reusable AWS shared data platform foundation for small and mid-sized organisations.
+    summary: Designed a production-minded platform blueprint that separates shared platform infrastructure from
+      product-specific data repositories.
+    purpose:
+      - Demonstrate platform engineering capability beyond isolated pipeline development.
+      - Show how a small organisation could bootstrap secure, repeatable AWS data platform foundations.
+      - Create a clear platform/product boundary for scalable data delivery.
+    implemented_capabilities:
+      - Terraform-based AWS platform foundation.
+      - Remote Terraform state bootstrap pattern.
+      - Environment-aware deployment structure for dev, test and prod.
+      - Shared S3 storage zones.
+      - IAM roles and policy separation.
+      - Secrets Manager baseline.
+      - Logging and monitoring baseline.
+      - VPC networking baseline.
+      - GitHub Actions deployment workflow.
+      - Devcontainer-based reproducible development environment.
+      - Architecture documentation and Architecture Decision Records.
+    technical_stack:
+      - AWS
+      - Terraform
+      - GitHub Actions
+      - S3
+      - IAM
+      - Secrets Manager
+      - CloudWatch/logging baseline
+      - VPC networking
+      - Devcontainers
+      - Markdown documentation
+      - Architecture Decision Records
+    architecture_signals:
+      - platform ownership
+      - infrastructure as code
+      - cloud foundation design
+      - security boundary design
+      - environment strategy
+      - CI/CD deployment model
+      - platform/product separation
+      - governance through documentation
+    cv_usage:
+      - Use for platform engineering, data platform, cloud infrastructure and principal/staff-level roles.
+      - Strongest when the job description asks for AWS, Terraform, platform foundations, cloud governance, CI/CD
+        or reusable engineering standards.
+      - Do not present as a production client platform; present as a side project / reference implementation.
   - name: Data Product Demo
     type: side_project
-    summary: Self-contained end-to-end data product in a single repository demonstrating a modern data platform pattern for small companies.
-    facts:
-      - Defines infrastructure using Terraform.
-      - Transforms data using dbt.
-      - Visualises data using Streamlit.
-      - Keeps infrastructure, transformation and application code version controlled in one repository.
-      - Uses GitHub Actions CI/CD pipelines.
-    signals:
-      - self-service analytics
-      - modern data stack
-      - data product delivery
+    positioning: Single-repository data product blueprint combining infrastructure, transformation, application
+      and CI/CD.
+    summary: Built an end-to-end data product reference implementation using Snowflake, dbt, Streamlit, Terraform
+      and GitHub Actions.
+    purpose:
+      - Demonstrate how a focused data product can be owned and deployed from one repository.
+      - Show a practical pattern for consultancy-style delivery of small and medium data products.
+      - Bridge data engineering, analytics engineering, infrastructure and business-facing app delivery.
+    implemented_capabilities:
+      - Terraform provisioning for Snowflake database, schemas, warehouse and supporting objects.
+      - dbt project with seeds, staging models, marts and tests.
+      - Layered Snowflake design using RAW, STAGING, ANALYTICS and APP schemas.
+      - Multiple Snowflake Streamlit applications deployed from app folders.
+      - GitHub Actions workflows for Terraform, dbt and Streamlit deployment.
+      - GitHub Codespaces/devcontainer setup for reproducible development.
+      - Documentation covering quick start, Terraform, dbt and Streamlit workflows.
+    technical_stack:
+      - Snowflake
       - Terraform
       - dbt
+      - SQL
       - Streamlit
+      - Python
       - GitHub Actions
-
+      - GitHub Codespaces
+      - Devcontainers
+    architecture_signals:
+      - data product thinking
+      - modern data stack
+      - analytics engineering
+      - self-service analytics
+      - infrastructure as code
+      - CI/CD for data platforms
+      - business-facing data applications
+      - small-team delivery pattern
+    cv_usage:
+      - Use for data engineering, analytics engineering, Snowflake/dbt, modern data stack and consulting-style delivery
+        roles.
+      - Strongest when the role values practical end-to-end delivery rather than pure governance.
+      - Can be paired with Data Platform Demo to explain platform versus product boundaries.
+  - name: Full-Stack WebApp Demo / Utilez WebApp
+    type: side_project
+    positioning: Full-stack web application portfolio project demonstrating React frontend and Django REST backend
+      delivery.
+    summary: Developed a decoupled web application foundation with React, Redux, Django REST Framework, JWT authentication
+      patterns, REST APIs, PostgreSQL/PostGIS and Docker Compose local development.
+    purpose:
+      - Demonstrate hands-on software engineering capability outside pure data platform work.
+      - Show ability to design and document frontend/backend separation, REST APIs and containerised local development.
+      - Provide a modernization path toward a stronger full-stack, platform, data and cloud portfolio project.
+    implemented_capabilities:
+      - React frontend with routing, components, Redux state management and Axios API calls.
+      - Django backend with Django REST Framework serializers, views, models and URL routing.
+      - User registration and JWT token generation pattern.
+      - Address and geolocation-oriented persistence using PostgreSQL/PostGIS container.
+      - Frontend/backend communication over HTTP and JSON.
+      - Docker Compose local development for frontend, backend, database and pgAdmin.
+      - Environment file example and Codespaces/devcontainer setup.
+      - Project documentation covering architecture, setup, local development, deployment, security, observability
+        and ADRs.
+    documented_roadmap_or_reference_items:
+      - React TypeScript modernization.
+      - Modern component architecture.
+      - Improved authentication flows.
+      - More modular Django REST architecture.
+      - Async tasks and background workers.
+      - Event-driven ingestion.
+      - Snowflake/Iceberg integration.
+      - Terraform, Kubernetes and AWS deployment references.
+      - Observability patterns.
+    technical_stack:
+      - React
+      - Redux
+      - React Router
+      - React Bootstrap
+      - Axios
+      - Django
+      - Django REST Framework
+      - SimpleJWT
+      - PostgreSQL/PostGIS
+      - Docker
+      - Docker Compose
+      - pgAdmin
+      - GitHub Codespaces
+      - Sentry SDK dependency
+      - Boto3 dependency
+    architecture_signals:
+      - full-stack application delivery
+      - frontend/backend separation
+      - REST API design
+      - containerised development
+      - software engineering fundamentals
+      - incremental modernisation
+      - technical documentation
+      - portfolio-driven engineering
+    cv_usage:
+      - Use selectively for roles asking for Python, Django, React, API development, product engineering or broader
+        software delivery.
+      - Do not overstate roadmap items as implemented production features.
+      - Useful as supporting evidence that the candidate can work beyond data pipelines and understand full application
+        architecture.
 education:
   - degree: Master of Electrical Engineering
     institution: University of Auckland
   - degree: Bachelor of Engineering
     field: Telecommunications
-
 source_notes:
   - Updated from Nima_Farhang_lead_CV.docx and experience_pool.txt.
-  - Use this profile as structured source data for CV tailoring, cover letter generation and interview preparation workflows.
+  - Enhanced with side projects from Data-Platform-Demo, Data-Product-Demo and Full-Stack WebApp/Utilez repositories.
+  - Use implemented_capabilities for CV claims.
+  - Use documented_roadmap_or_reference_items only where the CV or interview explicitly distinguishes planned/reference
+    work from implemented work.
+  - Use this profile as structured source data for CV tailoring, cover letter generation and interview preparation
+    workflows.
+portfolio_positioning:
+  summary: The side projects form a coherent portfolio showing platform foundations, product-level data delivery,
+    and full-stack application development.
+  narrative:
+    - Data Platform Demo shows shared cloud platform foundations and governance.
+    - Data Product Demo shows how a business-facing data product can be built on top of platform foundations.
+    - Full-Stack WebApp Demo shows broader software engineering capability across frontend, backend, APIs and containerised
+      local development.
+  recommended_interview_framing:
+    - Present the repositories as side projects and reference implementations, not production client systems.
+    - Use them to demonstrate architecture judgement, delivery structure, documentation discipline and hands-on
+      implementation.
+    - Explain the split between platform ownership and product ownership clearly when discussing modern data platform
+      roles.
+  combined_signals:
+    - principal-level architecture thinking
+    - hands-on engineering credibility
+    - platform-as-a-product mindset
+    - data product delivery
+    - cloud and infrastructure foundations
+    - software engineering breadth
+    - documentation and ADR discipline
+    - CI/CD and reproducible development practices
