@@ -32,22 +32,32 @@ core_profile:
     - Portfolio project documentation, ADRs and reproducible developer environments
 key_metrics:
   enterprise_data_platform:
-    data_volume: Approximately 70TB of production datasets
-    daily_ingestion: Approximately 2.5TB daily
-    source_systems: 25 enterprise telecommunications sources
-    platform_budget: Approximately NZD 500,000
-    core_stack:
+    daily_ingestion: Approximately 2.5TB per day
+    total_platform_size: Approximately 70TB of production datasets
+    source_systems: 25 telecommunications network data sources
+    budget: Approximately NZD 500,000
+    stack:
       - Snowflake
       - dbt
       - Azure Data Factory
       - Azure DevOps
   automation_platform:
     platform: Rundeck
-    deployment: Four on-premise servers
-    daily_execution_volume: Approximately 240,000 jobs per day
-    users: Network engineering teams running script execution and infrastructure health checks
+    deployment_model: On-premise platform across four servers
+    usage: Used by network teams for script execution automation and infrastructure health checks
+    job_volume: Approximately 240,000 jobs per day
   leadership:
-    largest_team_size: Seven engineers
+    team_leadership: Established and managed a seven-person network optimisation team at Mycom International
+    industry_leadership: Chaired joint government-industry technical working group for 5G technical parameters
+  cloud_migration:
+    scope: Azure to AWS data platform migration
+    role: Worked with architects on target platform structure and oversaw implementation by one platform engineer
+      and one data engineer
+    stack:
+      - AWS Glue
+      - Apache Spark
+      - Apache Iceberg
+      - Data lake architecture
 roles:
   - company: One New Zealand
     title: Principal Data & Automation Engineer
@@ -330,6 +340,9 @@ source_notes:
     work from implemented work.
   - Use this profile as structured source data for CV tailoring, cover letter generation and interview preparation
     workflows.
+  - Integrated professional experience pool supplied by user on 2026-05-29.
+  - Professional work is separated from public side-project repositories to avoid overstating side projects as employment
+    experience.
 portfolio_positioning:
   summary: The side projects form a coherent portfolio showing platform foundations, product-level data delivery,
     and full-stack application development.
@@ -353,3 +366,202 @@ portfolio_positioning:
     - software engineering breadth
     - documentation and ADR discipline
     - CI/CD and reproducible development practices
+professional_projects:
+  - name: WNI Enterprise Data Platform
+    type: professional_work
+    organisation: One New Zealand
+    associated_role: Senior Data Engineer
+    summary: Designed, developed and maintained a Snowflake/dbt data platform ingesting telecommunications network
+      data from 25 enterprise sources.
+    business_context: Provided trusted network intelligence data for analytics, operational reporting and downstream
+      engineering use cases.
+    scale:
+      daily_ingestion: Approximately 2.5TB per day
+      total_platform_size: Approximately 70TB
+      source_systems: 25
+      budget: Approximately NZD 500,000
+    responsibilities:
+      - Contributed to platform design, data ingestion patterns, data modelling and long-term platform maintenance.
+      - Built and maintained production-grade pipelines and dbt transformations.
+      - Supported operational reliability, incident response and platform continuity over multiple years.
+      - Worked across engineering, architecture and stakeholder groups to keep the platform aligned with business
+        needs.
+    technology_stack:
+      - Snowflake
+      - dbt
+      - Azure Data Factory
+      - Azure DevOps
+      - SQL
+      - Cloud data warehousing
+    cv_signals:
+      - enterprise data platform ownership
+      - large-scale ingestion
+      - Snowflake
+      - dbt
+      - production support
+      - telecommunications data
+  - name: Azure to AWS Data Platform Migration
+    type: professional_work
+    organisation: One New Zealand
+    associated_role: Principal Data & Automation Engineer
+    summary: Worked with architects to define the target AWS data platform structure and oversaw migration implementation
+      using AWS Glue, Spark and Iceberg patterns.
+    responsibilities:
+      - Collaborated with architects on the target platform structure and migration approach.
+      - Provided technical oversight for migration development delivered by one platform engineer and one data engineer.
+      - Supported transition from Azure-based orchestration and file management patterns to AWS-native data processing.
+      - Helped shape maintainable lakehouse-oriented patterns using data lake, Spark and Iceberg technologies.
+    technology_stack:
+      - AWS Glue
+      - Apache Spark
+      - Apache Iceberg
+      - AWS data lake
+      - S3-oriented architecture
+    cv_signals:
+      - cloud migration
+      - AWS data engineering
+      - platform architecture
+      - technical oversight
+      - lakehouse architecture
+  - name: Enterprise Rundeck Automation Platform
+    type: professional_work
+    organisation: One New Zealand
+    associated_role: Principal Automation Engineer
+    summary: Owned and operated an on-premise Rundeck automation platform used by network teams for script execution
+      and infrastructure health checks.
+    scale:
+      servers: 4
+      job_volume: Approximately 240,000 jobs per day
+    responsibilities:
+      - Owned operational reliability and platform continuity for the Rundeck automation environment.
+      - Supported automation use cases across network engineering teams.
+      - Maintained a high-volume job execution platform used for scripts, operational checks and infrastructure
+        automation.
+      - Provided governance, standards and operational support for platform users.
+    technology_stack:
+      - Rundeck
+      - Linux servers
+      - Automation orchestration
+      - Script execution
+      - Infrastructure health checks
+    cv_signals:
+      - automation platform ownership
+      - operations
+      - platform reliability
+      - high-volume orchestration
+      - DevOps
+  - name: New Zealand 5G Spectrum Strategy and Technical Allocation
+    type: professional_work
+    organisation: Ministry of Business, Innovation & Employment
+    associated_role: Technical Advisor
+    summary: Participated in development of New Zealand spectrum allocation for 5G and contributed to the initial
+      government proposal on 5G strategy.
+    responsibilities:
+      - Developed and presented initial government proposal material for 5G strategy.
+      - Facilitated engagement with the telecommunications industry on technical spectrum parameters.
+      - Chaired a joint industry-government technical working group to reach agreement on 5G technical parameters.
+    technology_stack:
+      - Telecommunications spectrum
+      - 5G strategy
+      - Technical policy
+      - Industry consultation
+    cv_signals:
+      - technical advisory
+      - stakeholder facilitation
+      - industry engagement
+      - telecommunications strategy
+      - executive communication
+  - name: Capacity Forecasting and Seasonality Models
+    type: professional_work
+    organisation: One New Zealand
+    associated_role: Capacity Management Engineer
+    summary: Developed machine learning models to predict future network capacity demands and identify seasonality
+      patterns.
+    responsibilities:
+      - Built predictive models to support capacity planning decisions.
+      - Used historical demand and seasonality signals to support future network planning.
+      - Improved data-driven decision making for operational capacity management.
+    technology_stack:
+      - Machine learning
+      - Forecasting
+      - Capacity planning
+      - Time-series analysis
+    cv_signals:
+      - machine learning
+      - forecasting
+      - capacity analytics
+      - network planning
+      - data-driven operations
+  - name: UtilEz Telecommunications Broker Platform
+    type: entrepreneurial_professional_project
+    organisation: UtilEz
+    associated_role: Founder & Technical Lead
+    period: 2022-2024
+    summary: Founded a telecommunications broker company and designed, developed and deployed a full-stack web platform
+      using React, Django and AWS.
+    responsibilities:
+      - Designed and delivered a React front end and Django back end for a customer-facing telecommunications broker
+        platform.
+      - Deployed the solution on AWS using AWS CDK.
+      - Owned product, architecture, delivery and deployment decisions as founder and technical lead.
+    technology_stack:
+      - React
+      - Django
+      - Python
+      - AWS
+      - AWS CDK
+      - Full-stack web application
+    cv_signals:
+      - entrepreneurship
+      - full-stack development
+      - Python
+      - React
+      - AWS deployment
+      - product ownership
+  - name: Network Optimisation Team Establishment
+    type: professional_work
+    organisation: Mycom International
+    associated_role: Team Leader, Network Optimisation
+    period: 2012-2014
+    summary: Established and managed a seven-person network optimisation team, defined responsibilities and procedures,
+      and maintained customer delivery cadence.
+    responsibilities:
+      - Established and managed a team of seven people.
+      - Defined responsibilities, procedures and delivery practices.
+      - Presented progress to the customer weekly and quarterly.
+      - Met yearly targets, contributing to extension of the project contract for one year.
+    technology_stack:
+      - Network optimisation
+      - Telecommunications engineering
+      - Customer delivery
+      - Team leadership
+    cv_signals:
+      - people leadership
+      - team establishment
+      - customer management
+      - delivery governance
+      - target delivery
+profile_usage_guidance:
+  where_to_place_experience_pool:
+    roles: Use for employment history and role-level responsibilities.
+    professional_projects: Use for project-level evidence from paid professional work, including scale, ownership,
+      stack and outcomes.
+    projects: Use for side projects, public demo repositories and portfolio assets.
+    portfolio_positioning: Use to explain how side projects support professional credibility without presenting
+      them as client production work.
+    key_metrics: Use for reusable headline metrics in CV summaries, cover letters and interview talking points.
+  recommended_cv_mapping:
+    - source: WNI Enterprise Data Platform
+      best_cv_section: One New Zealand — Senior Data Engineer
+    - source: Azure to AWS Data Platform Migration
+      best_cv_section: One New Zealand — Principal Data & Automation Engineer
+    - source: Enterprise Rundeck Automation Platform
+      best_cv_section: One New Zealand — Principal Automation Engineer
+    - source: New Zealand 5G Spectrum Strategy and Technical Allocation
+      best_cv_section: MBIE — Technical Advisor
+    - source: Capacity Forecasting and Seasonality Models
+      best_cv_section: One New Zealand — Capacity Management Engineer
+    - source: UtilEz Telecommunications Broker Platform
+      best_cv_section: UtilEz — Founder & Technical Lead / Projects
+    - source: Network Optimisation Team Establishment
+      best_cv_section: Mycom International — Team Leader, Network Optimisation
